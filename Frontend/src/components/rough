@@ -1,0 +1,83 @@
+/*+-----------------------------------------------------------------------------------+
+
+|  [Logo] ExpenseTracker                                      (₹) Total Wallet: 50k | -> 1. TOP BAR
++-----------------------------------------------------------------------------------+
+
+|                                                                                   |
+|  2. LEFT COLUMN (Add Expense Form)          3. RIGHT COLUMN (Data & History)      |
+|  +---------------------------------------+  +----------------------------------+  |
+|  |                                       |  |  [📊 Analytics Overview Cards]   |  |
+|  |   ➕ ADD NEW EXPENSE                  |  |  +---------------+------------+  |  |
+|  |  -----------------------------------  |  |  | This Month    | Category   |  |  |
+|  |                                       |  |  | ₹12,500       | Food (40%) |  |  |
+|  |  [📝 Input] Title (e.g., Room Rent)   |  |  +---------------+------------+  |  |
+|  |                                       |  |                                  |  |
+|  |  [💰 Input] Amount (₹)                |  |  📜 RECENT TRANSACTIONS HISTORY  |  |
+|  |                                       |  |  ------------------------------  |  |
+|  |  [📂 Dropdown] Category               |  |  [🍔 Food]    Burger   -₹250     |  |
+|  |    (Food, Bills, Travel, etc.)        |  |  [🧾 Bills]   WiFi     -₹799     |  |
+|  |                                       |  |  [🚗 Travel]  Petrol   -₹1,200   |  |
+|  |  [📅 Input] Date                      |  |  [🎬 Movies]  Netflix  -₹199     |  |
+|  |                                       |  |                                  |  |
+|  |  +---------------------------------+  |  |  [ ⏮️ Previous ]  [ Next ⏭️ ]   |  |
+|  |  |       [🚀 Add Expense]          |  |  |                                  |  |
+|  |  +---------------------------------+  |  |   (Pagination for large lists)   |  |
+|  |                                       |  +----------------------------------+  |
+|  +---------------------------------------+                                        |
++------------------------------------------------------------------------------------*/
+
+
+
+
+  /* useEffect(() => {
+      const handleRegister = async () => {
+        try {
+            const response = await axios.post('http://localhost:3000/api/auth/register', registerData);
+            
+            console.log('Register successfully!');
+            alert('Register successfully!');
+            console.log("Backend Response:", response.data);
+            
+        } catch (error) {
+            const errorMsg = error.response?.data?.message || error.message;
+            console.log('Error message:', errorMsg);
+            alert('Registration failed: ' + errorMsg);
+        }
+    };
+    handleRegister();
+    
+}, [registerData]); */
+
+    //  const today = new Date()
+
+    //  const firstDate = new Date(
+    //      today.getFullYear(),
+    //      today.getMonth(),
+    //      1
+    //  )
+
+    //  const nextMonth = new Date (
+    //     today.getFullYear(),
+    //     today.getMonth() + 1,
+    //     1
+    //  )
+
+    //  const monthlyExpense = await expenseModel.aggregate([
+    //     {
+    //         $match:{
+    //             client :userId,
+    //             date:{
+    //              $gte: firstDate,
+    //               $lt: nextMonth   
+    //             }
+    //         }
+    //     },{
+    //         $group:{
+    //             _id:null,
+    //             totalExpense:{
+    //                 $sum: "$amount"
+    //             }
+    //         }
+    //     }
+    //  ])
+  
