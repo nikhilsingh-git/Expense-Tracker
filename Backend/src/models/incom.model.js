@@ -17,6 +17,15 @@ const incomeSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"user",
         required:true
+    }, 
+    paymentMode: {
+        type: String,
+        required: true,
+        enum: ['Cash', 'Credit Card', 'Debit Card', 'UPI', 'Net Banking'] 
+    },
+    discription: { 
+        type: String,
+        default: ""
     }
 
 },{timestamps:true})

@@ -21,10 +21,14 @@ const ExpenseCreate = () =>{
 
 const {expense} = useContext(ExpenseContext)
 
-const [togel , setTogel] = useState(false)
+const {income} = useContext(ExpenseContext)
 
+const [togel , setTogel] = useState(false)
 const[errMsg , setErrMsg] = useState("")
+const[expenseSuccess , setExpenseSuccess] = useState('')
+
 const [incomeErrMsg , setIncomeErrMsg] = useState("")
+const [successMsg , setsuccessMsg] = useState("")
 
 const amount = useRef()
 const category = useRef()
@@ -63,7 +67,8 @@ const onChange = () =>{
        try {
 
             const response = await axios.post('http://localhost:3000/api/details/expense' ,expenseData ,{withCredentials:true})
-
+            setExpenseSuccess(response.data.message)
+            console.log(response.data.message)
             amount.current.value= ""
             category.current.value= ""
             paymentMode.current.value= ""
@@ -97,15 +102,20 @@ const onChange = () =>{
         const addIncomeData ={
           addIncome:addIncome.current.value,
           title: title.current.value,
-          date:date.current.value
+          date:date.current.value,
+          paymentMode:paymentMode.current.value,
+          discription:discription.current.value
         }
 
         try {
             const response = await axios.post('http://localhost:3000/api/auth/income' , addIncomeData ,{withCredentials:true})
-            
+            setsuccessMsg(response.data.message)
+            console.log(response.data.message)
             addIncome.current.value=""
             title.current.value=""
             date.current.value=""
+            paymentMode.current.value=""
+            discription.current.value=""
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message
             setIncomeErrMsg(errorMsg)
@@ -120,7 +130,7 @@ const onChange = () =>{
     }
 
 return(
-        <> 
+        <>
         <div> 
          <div className="ms-10 mt-10">
             <h1 className="text-cyan-400/60 text-4xl font-sans font-bold">
@@ -164,6 +174,25 @@ return(
                         <input type="date" name="" id="" 
                         className="h-10 rounded-md bg-[#112439] mt-2 mb-5 outline-0 px-5"
                         ref={date}/>
+
+                          <label htmlFor="">Payment Method</label>
+                        <select name="" id="" 
+                        className="h-10 rounded-md bg-[#112439] mt-2 mb-5 outline-0 px-5"
+                        ref={paymentMode}>
+                            <option value="">Select Payment Method</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="UPI">UPI</option>
+                            <option value="Net Banking">Net Banking</option>
+                        </select>
+
+                        
+                        <label htmlFor="">Discripton</label>
+                        <textarea name="" id="" className="rounded-md bg-[#112439] mt-2 mb-5 outline-0 px-5"
+                        rows={3}
+                        ref={discription}
+                        ></textarea>
 
                         <div className="flex justify-around ">
                             <button className="bg-[#112439] w-45 h-11 rounded cursor-pointer"
@@ -335,6 +364,18 @@ return(
                            -{item.amount}
                         </div>
                     </div>
+                        )}
+                        {income.map((item)=>
+                            <div className="flex justify-between border border-[#132739] rounded-lg "
+                               key={item._id}>
+                              <div className="px-5">
+                               <h1 className="text-gray-200">{item.title}</h1>
+                               <p className="text-gray-400">{new Date (item.date).toLocaleDateString()}</p>
+                             </div>
+                              <div className=" px-5 text-emerald-400">
+                                 +{item.addIncome}
+                             </div>
+                           </div>
                         )}
                       
                     </div>

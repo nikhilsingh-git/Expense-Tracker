@@ -6,8 +6,8 @@ const expenseRoute = express.Router()
 
 expenseRoute.post('/expense' , authMiddleWare , controller.expense )
 expenseRoute.get('/getExpense',authMiddleWare, controller.getExpense)
-expenseRoute.patch('/edit/:id', controller.updateExpense)
-expenseRoute.delete('/deleteExpense/:id' ,controller.deleteExpense )
+expenseRoute.patch('/edit/:id', authMiddleWare, controller.updateExpense)
+expenseRoute.delete('/deleteExpense/:id' ,authMiddleWare,controller.deleteExpense )
 expenseRoute.get('/getWalletData' ,authMiddleWare , controller.getWalletData)
 expenseRoute.get('/monthlyExpense' , authMiddleWare , controller.monthlyExpense)
 

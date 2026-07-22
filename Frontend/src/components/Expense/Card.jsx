@@ -5,7 +5,8 @@ import { WalletContext } from "../context/WalletContext"
 const Card = () =>{
    const {profileData} = useContext(ProfileContext)
    const {wallet} = useContext(WalletContext)
-    return(
+   const {monthlyExpense} = useContext(ProfileContext)
+    return( 
         <>
         <div className="flex justify-around items-center text-center  w-full h-60 px-20 font-serif">
             <div className="bg-[#071321] w-60 h-40 rounded-2xl text-gray-300 border border-[#132739] ">
@@ -19,7 +20,7 @@ const Card = () =>{
             </div>
             <div className="bg-[#071321] w-60 h-40 rounded-2xl text-gray-300  border border-[#132739]">
                 <h1 className="text-xl  mt-3 font-sans">This month Expenses</h1>
-                <h1 className="text-lg font-sans ">{"\u20B9"}<span>00.00</span></h1>
+                <h1 className="text-lg font-sans ">{"\u20B9"}<span>{monthlyExpense}</span></h1>
                 {/* <img src="" alt="" /> */}
             </div>
             <div className="bg-[#071321] w-60 h-40 rounded-2xl text-gray-300  border border-[#132739]">

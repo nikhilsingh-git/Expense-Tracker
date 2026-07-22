@@ -10,6 +10,8 @@ const ContextData = ({ children }) => {
       const [profileData , setProfileData] = useState()
       const [loading , setLoading] = useState(true)
 
+      const [monthlyExpense , setMonthlyExpense] = useState()
+
         useEffect(()=>{
         const getData = async()=>{
             try {
@@ -26,12 +28,27 @@ const ContextData = ({ children }) => {
          getData()
        
     },[])
+
+     useEffect(()=>{
+        const getMonthlyExpense = async()=>{
+            try {
+                const response = await axios.get('http://localhost:3000/api/details/monthlyExpense' , {withCredentials:true})
+                setMonthlyExpense(response.data.monthlyExpenseAmount)
+            } catch (error) {
+                const errorMsg = error.response?.data?.messagge || error.messagge
+             
+            }
+        }
+
+         getMonthlyExpense()
+    } ,[])
     
 
     return (
         <ProfileContext.Provider value={{
             loading,
-            profileData
+            profileData,
+            monthlyExpense
         }}>
             {children}
         </ProfileContext.Provider>

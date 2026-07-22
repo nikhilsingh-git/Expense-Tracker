@@ -6,8 +6,9 @@ import axios from 'axios'
 import { ProfileContext } from "../context/ProfileContext"
 
 const DashboardPage = () =>{
-   
+
     const {loading} = useContext(ProfileContext) 
+   
     
     if (loading) {
     return (

@@ -10,7 +10,9 @@ route.get('/details', authMiddleWare ,controllers.viweDetails)
 route.post('/changePassword' , authMiddleWare, controllers.changePassword)
 // route.post('/view' , controllers.viewUsers)
 route.post('/income' , authMiddleWare , controllers.addIncome)
-route.post('/getAllIncome' ,authMiddleWare , controllers.getAllIncome) 
+route.get('/getAllIncome' ,authMiddleWare , controllers.getAllIncome) 
+route.delete('/deleteIncome/:id' ,authMiddleWare, controllers.deteleIncome)
+route.patch('/editIncome/:id' , authMiddleWare , controllers.editIncome)
 
 
 module.exports = route

@@ -252,13 +252,20 @@ const changePassword = async (req,res) => {
 const addIncome = async(req,res) => {
 
  try {
-       const {addIncome , title , date} = req.body
+       const {addIncome , title , date, paymentMode , discription} = req.body
    
        if(!addIncome || !title){
            return res.status(404).json({
                success:false,
                message:'Incomes not found , Please send Income'
            })
+       }
+
+       if(!paymentMode){
+        return res.status(400).json({
+            success:false,
+            message:"Payment Method are REQUIRED!"
+        })
        }
        
        const income = Number(addIncome) || 0
@@ -268,7 +275,9 @@ const addIncome = async(req,res) => {
            addIncome:income,
            title,
            date,
-           userId
+           userId,
+           paymentMode,
+           discription
        })
 
       const  walletUpdate = await Wallet.findOneAndUpdate(
@@ -326,5 +335,83 @@ const getAllIncome = async(req,res) =>{
 
 }
 
+const deteleIncome = async(req , res) =>{
+    try {
+         const id = req.params.id
+         const userId = req.user.id
 
-module.exports ={register ,addIncome, login , viweDetails ,changePassword , getAllIncome} 
+         const deleteIncome = await Income.findOneAndDelete({
+            _id:id,
+            userId:userId
+         })
+
+         if(!deleteIncome){
+            return res.status(404).json({
+                success:false,
+                message:'Income not found!',
+            })
+         }
+
+         res.status(200).json({
+            success:true,
+            message:"Income Delete Successfully!",
+            deleteIncome
+         })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:'Somthing want worng!',
+            error:error.message
+        })
+    }
+}
+
+const editIncome = async(req ,res) =>{
+    try {
+      const {addIncome,title,date,paymentMode,discription} = req.body
+        const id = req.params.id
+        const userId = req.user.id
+
+    const updatedIncome = await Income.findOneAndUpdate({
+        _id:id,
+        userId:userId
+     } ,
+     {
+      addIncome,
+      title,
+      date,
+      paymentMode,
+      discription
+     },
+     { 
+      new:true ,
+      runValidators: true,  
+    }
+    )
+
+    if(!updatedIncome){
+        return res.status(400).json({
+            success:false,
+            message:'Income not found!'
+        })
+    }
+
+    res.status(201).json(
+        {
+            success:true,
+            message:"Income updated successfully!",
+            updatedIncome
+        }
+    )
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Something want worng!",
+            error :error.message
+        })
+        
+    }
+}
+
+
+module.exports ={register ,addIncome, login , viweDetails ,changePassword , getAllIncome, deteleIncome} 

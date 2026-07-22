@@ -19,7 +19,6 @@ const WalletData = ({children}) =>{
                 setWallet(response.data.walletData)
             } catch (error) {
              const errorMsg = error.response?.data?.message || error.message
-             alert(errorMsg)
             }
             finally{
                 setLoading(false)
@@ -28,8 +27,6 @@ const WalletData = ({children}) =>{
 
         getWalletData()
     },[])
-
-    
 
     return(
         <WalletContext.Provider value={{

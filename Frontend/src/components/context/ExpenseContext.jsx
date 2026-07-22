@@ -10,6 +10,8 @@ const ExpenseData = ({children}) =>{
      const [expense , setExpense] = useState([])
      const [loading , setLoading] = useState(true)
 
+     const [income , setIncome] = useState()
+
       useEffect(()=>{
       const getExpense = async()=>{
         try {
@@ -17,7 +19,6 @@ const ExpenseData = ({children}) =>{
            setExpense(response.data.expense)
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message
-            console.log("error" , errorMsg)
         }
         finally{
             setLoading(false)
@@ -27,10 +28,26 @@ const ExpenseData = ({children}) =>{
        getExpense()
     },[])
 
+    useEffect(()=>{
+        const getAllIncome = async()=>{
+          
+            try {
+                const response = await axios.get('http://localhost:3000/api/auth/getAllIncome' , {withCredentials:true})
+                setIncome(response.data.allIncome)
+            } catch (error) {
+                const errorMsg = error.response?.data?.message || error.message
+            }
+        }
+
+        getAllIncome()
+    })
+
+
     return(
         <ExpenseContext.Provider value={{
             expense,
-            loading
+            loading,
+            income
         }}>
             {children}
         </ExpenseContext.Provider>

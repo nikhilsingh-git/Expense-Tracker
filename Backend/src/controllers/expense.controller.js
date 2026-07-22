@@ -108,12 +108,17 @@ const updateExpense = async(req , res)=>{
   try {
     
       const expenseId = req.params.id
+      const userId = req.user.id
 
-        // const{amount,category,paymentMode,client, discription, date} = req.body
+        const{amount,category,paymentMode, discription, date} = req.body
 
      const updatedExpense = await expenseModel.findOneAndUpdate(
-        { _id: expenseId }, 
-        {$set:req.body},
+        { _id: expenseId ,
+            client:userId
+         }, 
+        {
+            amount,category,paymentMode, discription, date
+        },
         { returnDocument: 'after' , 
           runValidators: true
         }
@@ -149,7 +154,12 @@ const deleteExpense = async (req,res)=>{
     
     try {
          const id = req.params.id
-         const expenseDeleted = await expenseModel.findByIdAndDelete(id)
+         const userId = req.user.id
+
+         const expenseDeleted = await expenseModel.findOneAndDelete({
+            _id:id,
+            client:userId
+         })
 
          if(!expenseDeleted){
             return res.status(404).json({
@@ -165,7 +175,7 @@ const deleteExpense = async (req,res)=>{
          })
     } catch (error) {
         console.log(`Expense not deleted! ${error}`)
-         res.status(400).json({
+         res.status(500).json({
             success:false,
             message:'Exppense is not deleted!',
             error:error.message
