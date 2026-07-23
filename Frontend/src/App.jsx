@@ -13,6 +13,9 @@ import ContextData from "./components/context/ProfileContext";
 import ExpenseData from "./components/context/ExpenseContext";
 import WalletData from "./components/context/WalletContext";
 
+import EditExpense from "./components/Expense/EditExpense";
+import EditIncome from "./components/Expense/EditIncome";
+
 const app = () =>{
 
 return(
@@ -27,6 +30,7 @@ return(
         <Route path ='/api/auth/login' element={<AuthPage />} />
         <Route path ='/api/auth/register' element={<Register />} />
         <Route path='/api/auth/create-profile' element={<CreateProfile />} />
+        <Route path='/api/auth/view' element={<View />}/>
         <Route path='/api/auth/client-handel' element={<ClientHandel />}>   
           <Route index element={<DashboardPage />} />
           <Route path ='create-expence' element={<ExpenseCreate />} />
@@ -34,6 +38,8 @@ return(
           <Route path='analytics' element={<Analytics />} />
           <Route path='budget-planner' element={<BudgetPlanner />} />
         </Route>
+        <Route path='/expenseEdit' element={<EditExpense />}/>
+        <Route path='/incomeEdit' element={<EditIncome />}/>
       </Routes>
       </ExpenseData>
       </WalletData>
@@ -47,6 +53,8 @@ return(
     {/* <ClientHandel /> */}
     {/* <CreateProfile /> */}
     {/* <ExpenseCreate /> */}
+    {/* <EditExpense></EditExpense> */}
+    {/* <EditIncome></EditIncome> */}
 
   </>
 )

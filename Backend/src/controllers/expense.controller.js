@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const expense = async(req , res)=>{
 
     try{
-          const{amount,category,paymentMode,client,discription,date} = req.body
+          const{amount,category,paymentMode,client,description,date} = req.body
 
         const expenseAmount = Number(amount) ;
         const userId = req.user.id
@@ -54,7 +54,7 @@ const expense = async(req , res)=>{
         category,
         paymentMode,
         client: req.user.id,
-        discription,
+        description,
         date
     })
 
@@ -110,16 +110,21 @@ const updateExpense = async(req , res)=>{
       const expenseId = req.params.id
       const userId = req.user.id
 
-        const{amount,category,paymentMode, discription, date} = req.body
+        const{amount,category,paymentMode, Description, date} = req.body
 
      const updatedExpense = await expenseModel.findOneAndUpdate(
         { _id: expenseId ,
             client:userId
          }, 
         {
-            amount,category,paymentMode, discription, date
+            amount,
+            category,
+            paymentMode,
+            Description,
+            date
         },
-        { returnDocument: 'after' , 
+        { 
+          returnDocument: 'after' , 
           runValidators: true
         }
      )

@@ -4,7 +4,7 @@ const authMiddleWare = require('../middlewares/auth.middleware')
 
 const route = express.Router()
 
-route.post('/register' ,controllers.register)
+route.post('/register' , controllers.register)
 route.post('/login',  controllers.login)
 route.get('/details', authMiddleWare ,controllers.viweDetails)
 route.post('/changePassword' , authMiddleWare, controllers.changePassword)

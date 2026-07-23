@@ -12,9 +12,20 @@ const View = () =>{
     const {loading} = useContext(ExpenseContext)
     const {expense} = useContext(ExpenseContext)
     const {income} = useContext(ExpenseContext)
+    const{handelOnBack} = useContext(ExpenseContext)
+    const {getExpenseId} = useContext(ExpenseContext)
+    const {getIncomeId} = useContext(ExpenseContext)
+    const {setGetExpenseId} = useContext(ExpenseContext)
+    const {setGetIncomeId} = useContext(ExpenseContext)
+    const {handelOnExpenseEdit} = useContext(ExpenseContext)
+    const {handelOnExpenseDelete} = useContext(ExpenseContext)
+    const {handelOnIncomeDelete} = useContext(ExpenseContext)
+    const {haldelOnIncomeEdit} = useContext(ExpenseContext)
 
-     const [getExpenseId , setGetExpenseId] = useState(null)
-     const [getIncomeId , setGetIncomeId] = useState(null)
+
+
+
+   
     if (loading) {
     return (
         <div className="flex h-screen items-center justify-center bg-gray-950 text-cyan-400 text-xl font-bold">
@@ -24,7 +35,8 @@ const View = () =>{
     }
 
     return(<>
-       <div>
+    
+        <div>
            <div className="ms-10 mt-10">
             <h1 className="text-cyan-400/60 text-4xl font-sans font-bold">
                 View Transaction
@@ -53,8 +65,7 @@ const View = () =>{
                     <tbody className="cursor-grabbing">
                         
                         {expense.map((item)=>
-                          <tr className="border-b border-[#132739] hover:bg-[#132230] px-8 h-15 rounded-2xl transition duration-500 ease-in-out
-                        cursor-pointer"
+                          <tr className="border-b border-[#132739] hover:bg-[#132230] px-8 h-15 rounded-2xl transition duration-500 ease-in-out"
                           key={item._id}
                           onClick={()=>{
                              setGetExpenseId(getExpenseId === item._id ? null : item._id)
@@ -70,20 +81,23 @@ const View = () =>{
                             <td className="text-left px-10 text-red-400">-{item.amount}</td>
                             <td className="text-left px-10">{item.paymentMode}</td>
                             <td className="text-left px-10 relative">
-                                {item.discription}
+                                {item.description}
 
                             {getExpenseId === item._id && (
-                           <div className="absolute text-gray-950 bg-gray-300 w-30 h-49 rounded-2xl text-center text-xl font-medium font-sans">
+                           <div className="absolute right-45 text-gray-950 bg-gray-300 w-30 h-49 rounded-2xl text-center text-xl font-medium font-sans">
                             <ul className="">
-                                <li className="my-7 relative">
+                                <li className="my-7 relative cursor-pointer"
+                                onClick={handelOnBack}>
                                 <h1 className="absolute top-1 left-3 text-2xl"> <IoChevronBackCircle /></h1>
                                 <h1>back</h1>
                                 </li>
-                                <li className="my-7 relative text-blue-500">
+                                <li className="my-7 relative text-blue-500 cursor-pointer"
+                                onClick={handelOnExpenseEdit}>
                                   <h1 className="absolute top-1 left-3 text-2xl"><CiEdit /></h1>
                                  <h1>Edit</h1>
                                 </li>
-                                <li className="my-7 relative text-red-500">
+                                <li className="my-7 relative text-red-500 cursor-pointer" 
+                                onClick={handelOnExpenseDelete}>
                                     <h1 className="absolute top-0.5 left-2 text-2xl"><MdDelete /></h1>
                                     <h1>Delete</h1>
                                 </li>
@@ -95,8 +109,7 @@ const View = () =>{
                         )}
 
                         {income.map((value)=>
-                          <tr className="border-b border-[#132739] hover:bg-[#132230] px-8 h-15 rounded-2xl transition duration-500 ease-in-out
-                        cursor-pointer "
+                          <tr className="border-b border-[#132739] hover:bg-[#132230] px-8 h-15 rounded-2xl transition duration-500 ease-in-out"
                           key={value._id}
                           onClick={()=>{
                             setGetIncomeId(getIncomeId === value._id ? null : value._id)
@@ -115,19 +128,22 @@ const View = () =>{
                             </td>
                             <td className="text-left px-10">{value.paymentMode}</td>
                             <td className="text-left px-10 relative ">
-                                {value.discription}
+                                {value.description}
                             {getIncomeId === value._id && (
-                            <div className="absolute text-gray-950 bg-gray-300 w-30 h-49 rounded-2xl text-center text-xl font-medium font-sans">
+                            <div className="absolute right-45 text-gray-950 bg-gray-300 w-30 h-49 rounded-2xl text-center text-xl font-medium font-sans">
                             <ul className="">
-                             <li className="my-7 relative">
+                             <li className="my-7 relative cursor-pointer"
+                             onClick={handelOnBack}>
                                 <h1 className="absolute top-1 left-3 text-2xl"> <IoChevronBackCircle /></h1>
                                 <h1> back</h1>
                              </li>
-                             <li className="my-7 relative text-blue-500">
+                             <li className="my-7 relative text-blue-500 cursor-pointer"
+                             onClick={haldelOnIncomeEdit}>
                                 <h1 className="absolute top-1 left-3 text-2xl"><CiEdit /></h1>
                                 <h1>Edit</h1>
                              </li>
-                            <li className="my-7 relative text-red-500" >
+                            <li className="my-7 relative text-red-500 cursor-pointer"
+                            onClick={handelOnIncomeDelete} >
                               <h1 className="absolute top-0.5 left-2 text-2xl"><MdDelete /></h1>
                                 <h1>Delete</h1>
                             </li>
@@ -144,6 +160,7 @@ const View = () =>{
             </div>    
          </div>
        </div>
+      
 
     </>)
 }

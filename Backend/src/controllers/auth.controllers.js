@@ -252,7 +252,7 @@ const changePassword = async (req,res) => {
 const addIncome = async(req,res) => {
 
  try {
-       const {addIncome , title , date, paymentMode , discription} = req.body
+       const {addIncome , title , date, paymentMode , description} = req.body
    
        if(!addIncome || !title){
            return res.status(404).json({
@@ -277,7 +277,7 @@ const addIncome = async(req,res) => {
            date,
            userId,
            paymentMode,
-           discription
+           description
        })
 
       const  walletUpdate = await Wallet.findOneAndUpdate(
@@ -383,8 +383,8 @@ const editIncome = async(req ,res) =>{
       paymentMode,
       discription
      },
-     { 
-      new:true ,
+     {
+      returnDocument:'after',
       runValidators: true,  
     }
     )
@@ -414,4 +414,14 @@ const editIncome = async(req ,res) =>{
 }
 
 
-module.exports ={register ,addIncome, login , viweDetails ,changePassword , getAllIncome, deteleIncome} 
+module.exports =
+    {
+     register,
+     addIncome,
+     login ,
+     viweDetails,
+     changePassword,
+     getAllIncome,
+     deteleIncome,
+     editIncome
+    } 

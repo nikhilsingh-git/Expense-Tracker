@@ -34,7 +34,7 @@ const amount = useRef()
 const category = useRef()
 const paymentMode = useRef()
 const date = useRef()
-const discription = useRef()
+const description = useRef()
 
 const addIncome = useRef()
 const title = useRef()
@@ -60,7 +60,7 @@ const onChange = () =>{
             category:category.current.value,
             paymentMode:paymentMode.current.value,
             date:date.current.value,
-            discription:discription.current.value,
+            description:description.current.value,
         }
 
         console.log(expenseData.paymentMode)
@@ -73,7 +73,7 @@ const onChange = () =>{
             category.current.value= ""
             paymentMode.current.value= ""
             date.current.value= ""
-            discription.current.value= ""  
+            description.current.value= ""  
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message;
             setErrMsg(errorMsg)
@@ -188,10 +188,10 @@ return(
                         </select>
 
                         
-                        <label htmlFor="">Discripton</label>
+                        <label htmlFor="">Description</label>
                         <textarea name="" id="" className="rounded-md bg-[#112439] mt-2 mb-5 outline-0 px-5"
                         rows={3}
-                        ref={discription}
+                        ref={description}
                         ></textarea>
 
                         <div className="flex justify-around ">
@@ -237,10 +237,10 @@ return(
                         className="h-10 rounded-md bg-[#112439] mt-2 mb-5 outline-0 px-5"
                         ref={date}/>
 
-                        <label htmlFor="">Discripton</label>
+                        <label htmlFor="">Description</label>
                         <textarea name="" id="" className="rounded-md bg-[#112439] mt-2 mb-5 outline-0 px-5"
                         rows={3}
-                        ref={discription}
+                        ref={description}
                         ></textarea>
 
                         <div className="flex justify-around ">
