@@ -10,9 +10,16 @@ const ExpenseData = ({children}) =>{
 
      const [expense , setExpense] = useState([])
      const [loading , setLoading] = useState(true)
-
      const [income , setIncome] = useState()
-     const [togel , setTogel] = useState(false)
+
+    //  const [showEditExpense , setShowEditExpense] = useState(false)
+    //  const [showEditIncome , setShowEditIncome] = useState(false)
+
+    const [page , setPage] = useState("view")
+
+    const [expenseId , setExpenseId] = useState(null)
+    const [incomeId , setIncomeId] = useState(null)
+
      const [getExpenseId , setGetExpenseId] = useState(null)
      const [getIncomeId , setGetIncomeId] = useState(null)
 
@@ -54,11 +61,12 @@ const ExpenseData = ({children}) =>{
      }
 
     const handelOnExpenseEdit = async() =>{
-        navigate('/expenseEdit')
+        setPage("expense")
     }
 
     const haldelOnIncomeEdit = async() =>{
-        navigate('/incomeEdit')
+        setPage("income")
+       
     }
 
     const handelOnExpenseDelete = async() =>{
@@ -81,6 +89,17 @@ const ExpenseData = ({children}) =>{
             console.log(errorMsg)
         }
     } 
+
+    const editExpenseData = async(data) =>{
+        try {
+            console.log(data)
+            const response = await axios.patch(`http://localhost:3000/api/expense/edit/${expenseId}` , data , {withCredentials : true})
+            console.log(response.data)
+        } catch (error) {
+            const errMsg = error.response?.data?.error || error.message
+            console.log(errMsg)
+        }
+    }
   
     return(
         <ExpenseContext.Provider value={{
@@ -89,14 +108,18 @@ const ExpenseData = ({children}) =>{
             income,
             getIncomeId,
             getExpenseId,
-            togel,
+            page,
+            setPage,
+            setExpenseId,
+            setIncomeId,
             handelOnBack,
             setGetExpenseId,
             setGetIncomeId,
             handelOnExpenseEdit,
             handelOnExpenseDelete,
             handelOnIncomeDelete,
-            haldelOnIncomeEdit
+            haldelOnIncomeEdit,
+            editExpenseData
             
         }}>
             {children}

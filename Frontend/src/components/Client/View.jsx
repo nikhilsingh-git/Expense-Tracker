@@ -1,7 +1,9 @@
-import axios from "axios"
+
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { ExpenseContext } from "../context/ExpenseContext"
+import EditExpense from "../Expense/EditExpense"
+import EditIncome from "../Expense/EditIncome"
 
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
@@ -21,12 +23,10 @@ const View = () =>{
     const {handelOnExpenseDelete} = useContext(ExpenseContext)
     const {handelOnIncomeDelete} = useContext(ExpenseContext)
     const {haldelOnIncomeEdit} = useContext(ExpenseContext)
-
-
-
-
-   
-    if (loading) {
+    const {page} = useContext(ExpenseContext)
+    const {setExpenseId} = useContext(ExpenseContext)
+    const {setIncomeId} = useContext(ExpenseContext)
+ if (loading) {
     return (
         <div className="flex h-screen items-center justify-center bg-gray-950 text-cyan-400 text-xl font-bold">
             Loading Transaction...
@@ -34,8 +34,16 @@ const View = () =>{
         )
     }
 
-    return(<>
-    
+    return(
+    <>
+    {
+        page === "income" ? (
+          <EditIncome />  
+        )  :
+        page ==="expense" ?(
+            <EditExpense />
+        ) :
+         <div>
         <div>
            <div className="ms-10 mt-10">
             <h1 className="text-cyan-400/60 text-4xl font-sans font-bold">
@@ -43,7 +51,6 @@ const View = () =>{
             </h1>
             <p className="text-gray-400 text-xl">See and manage all transactions.</p>
          </div>
-
          <div>
             <div className=" text-gray-200 bg-[#071321] h-140 my-20 mx-20 overflow-scroll scrollbar-hide rounded-2xl shadow-[0_0_20px_rgba(100,102,50,0.3)]">
                 {expense.length === 0 && income.length === 0? <div className="text-center m-auto mt-53 h-30 w-60 border border-[#132739] flex justify-center items-center
@@ -68,7 +75,8 @@ const View = () =>{
                           <tr className="border-b border-[#132739] hover:bg-[#132230] px-8 h-15 rounded-2xl transition duration-500 ease-in-out"
                           key={item._id}
                           onClick={()=>{
-                             setGetExpenseId(getExpenseId === item._id ? null : item._id)
+                             setGetExpenseId(getExpenseId === item._id ? null : item._id),
+                             setExpenseId(item._id)
                         }
                           } > 
                             <td className="text-left px-10">
@@ -103,7 +111,7 @@ const View = () =>{
                                 </li>
                             </ul>
                             </div>
-                            )}
+                        )}
                             </td>
                         </tr> 
                         )}
@@ -113,6 +121,7 @@ const View = () =>{
                           key={value._id}
                           onClick={()=>{
                             setGetIncomeId(getIncomeId === value._id ? null : value._id)
+                            setExpenseId(value._id)
                           }
                           }>
                             <td className="text-left px-10">
@@ -160,9 +169,10 @@ const View = () =>{
             </div>    
          </div>
        </div>
-      
-
-    </>)
+       </div>
+    }
+    </>
+    )
 }
 
 export default View

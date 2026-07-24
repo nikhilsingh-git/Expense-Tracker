@@ -2,7 +2,7 @@ const EditIncome = () =>{
 
     return(
         <>
-        <div>
+        <div className="text-gray-300">
             <div className="text-center mt-15 ">
                 <h1 className=" text-3xl font-sans font-bold underline">Edit Income</h1>
                 <p>Update your income details quickly and keep your financial records accurate.</p>

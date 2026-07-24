@@ -13,8 +13,6 @@ import ContextData from "./components/context/ProfileContext";
 import ExpenseData from "./components/context/ExpenseContext";
 import WalletData from "./components/context/WalletContext";
 
-import EditExpense from "./components/Expense/EditExpense";
-import EditIncome from "./components/Expense/EditIncome";
 
 const app = () =>{
 
@@ -38,8 +36,6 @@ return(
           <Route path='analytics' element={<Analytics />} />
           <Route path='budget-planner' element={<BudgetPlanner />} />
         </Route>
-        <Route path='/expenseEdit' element={<EditExpense />}/>
-        <Route path='/incomeEdit' element={<EditIncome />}/>
       </Routes>
       </ExpenseData>
       </WalletData>

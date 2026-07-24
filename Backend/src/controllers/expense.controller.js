@@ -110,21 +110,15 @@ const updateExpense = async(req , res)=>{
       const expenseId = req.params.id
       const userId = req.user.id
 
-        const{amount,category,paymentMode, Description, date} = req.body
-
      const updatedExpense = await expenseModel.findOneAndUpdate(
         { _id: expenseId ,
             client:userId
          }, 
         {
-            amount,
-            category,
-            paymentMode,
-            Description,
-            date
+            $set:req.body
         },
         { 
-          returnDocument: 'after' , 
+          new:true, 
           runValidators: true
         }
      )
@@ -139,7 +133,8 @@ const updateExpense = async(req , res)=>{
        res.status(201).json({
         success:true,
         message:'updated successfully!',
-        data: updatedExpense
+         updatedExpense,
+         getSingleExpense
 
        })
   } catch (error) {
@@ -280,5 +275,5 @@ module.exports= {
                   updateExpense,
                   deleteExpense,
                   getWalletData,
-                  monthlyExpense
+                  monthlyExpense,
                 }

@@ -82,7 +82,7 @@ const onChange = () =>{
             category.current.value= ""
             paymentMode.current.value= ""
             date.current.value= ""
-            discription.current.value= ""  
+            description.current.value= ""  
         }
 
     }
@@ -104,13 +104,13 @@ const onChange = () =>{
           title: title.current.value,
           date:date.current.value,
           paymentMode:paymentMode.current.value,
-          discription:discription.current.value
+          description:description.current.value
         }
 
         try {
             const response = await axios.post('http://localhost:3000/api/auth/income' , addIncomeData ,{withCredentials:true})
             setsuccessMsg(response.data.message)
-            console.log(response.data.message)
+            
             addIncome.current.value=""
             title.current.value=""
             date.current.value=""

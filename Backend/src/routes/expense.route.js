@@ -10,6 +10,7 @@ expenseRoute.patch('/edit/:id', authMiddleWare, controller.updateExpense)
 expenseRoute.delete('/deleteExpense/:id' ,authMiddleWare,controller.deleteExpense )
 expenseRoute.get('/getWalletData' ,authMiddleWare , controller.getWalletData)
 expenseRoute.get('/monthlyExpense' , authMiddleWare , controller.monthlyExpense)
+expenseRoute.get('/getSingleExpense/:id' , authMiddleWare , controller.getSingleExpense)
 
 module.exports = expenseRoute
 

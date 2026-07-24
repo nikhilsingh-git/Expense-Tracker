@@ -1,6 +1,5 @@
-import axios from "axios"
-import { useNavigate } from "react-router-dom"
-import { useContext, useRef, useState } from "react"
+
+import {useContext, useRef, useState } from "react"
 import { ExpenseContext } from "../context/ExpenseContext"
 
 const EditExpense = () =>{
@@ -11,42 +10,44 @@ const paymentMode = useRef()
 const date = useRef()
 const Description = useRef()
 
+const {editExpenseData} = useContext(ExpenseContext)
+const {setPage} = useContext(ExpenseContext)
 const[errMsg , setErrmsg] = useState("")
-const {getExpenseId} = useContext(ExpenseContext)
-
-const navigate = useNavigate()
 
     const ExpenseFormSubmit = async(e) =>{
           e.preventDefault()
-          console.log(getExpenseId)
         const expenseData = {
-             amount:amount.current.value,
-             category:category.current.value,
-             paymentMode:paymentMode.current.value,
-             date:date.current.value,
-             Description:Description.current.value,
+          
         }
 
-        try {
-            const response = await axios.patch(`http://localhost:3000/api/expense/edit/${getExpenseId}` ,expenseData , {withCredentials:true})
-            console.log(response.data)
-            navigate('/api/auth/client-handel/view-transactions')
-        } catch (error) {
-            const errorMsg = error.response?.data?.message || error.message
-            setErrmsg(errorMsg)
-        }
+    if (amount.current.value.trim())
+    expenseData.amount = amount.current.value;
+
+    if (category.current.value.trim())
+    expenseData.category = category.current.value;
+
+    if (paymentMode.current.value.trim())
+    expenseData.paymentMode = paymentMode.current.value;
+
+    if (date.current.value)
+    expenseData.date = date.current.value;
+
+    if (Description.current.value.trim())
+    expenseData.Description = Description.current.value;
+
+        editExpenseData(expenseData)
+        setPage("view")
         
-        amount.current.value=""
+        amount.current.value = ""
         category.current.value=""
         paymentMode.current.value=""
         date.current.value=""
         Description.current.value=""
-    
     }
 
     return (
         <>
-        <div>
+        <div className="text-gray-300">
             <div className="text-center mt-15 ">
                 <h1 className=" text-3xl font-sans font-bold underline">Edit Expense</h1>
                 <p>Review and update your expense details before saving.</p>
