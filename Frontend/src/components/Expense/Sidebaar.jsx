@@ -48,23 +48,16 @@ const Sidebaar = () =>{
                             <h1 className="absolute left-15">Analytics</h1>
                         </div>
                         </Link>
-                        <Link to='budget-planner'>
-                        <div className="relative h-13 w-60 flex items-center justify-between font-medium font-sans bg-cyan-500/20 rounded-2xl
-                        hover:bg-cyan-400/60 hover:text-gray-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] cursor-pointer hover:transition-all duration-500 ease-in-out">  
-                            <h1 className="absolute left-8 text-xl font-medium"><RiFocus3Fill /></h1>
-                            <h1 className="absolute left-15">Budget Planner</h1>
-                        </div>
-                        </Link>
                     </div>
                 </div >  
                      <div className="px-5 flex text-gray-300 relative">
-                      <div className="w-10 h-10 mt-45 ms-0 rounded-full overflow-hidden ">
+                      <div className="w-10 h-10 mt-65 ms-0 rounded-full overflow-hidden ">
                         <img src={profileData?.inputFile} alt="" />
                       </div>
-                      <div className="absolute top-45 left-19">
+                      <div className="absolute top-65 left-19">
                         <h1 className="capitalize">{profileData?.fullName}</h1>
                       </div>
-                      <div className="absolute top-50 left-19">
+                      <div className="absolute top-70 left-19">
                         <h1 className="font-sm text-sm">{profileData?.email}</h1>
                       </div>
                     </div>

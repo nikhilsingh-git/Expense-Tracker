@@ -25,7 +25,7 @@ const ExpenseData = ({children}) =>{
 
      const navigate = useNavigate()
 
-      useEffect(()=>{
+    useEffect(()=>{
       const getExpense = async()=>{
         try {
            const response = await axios.get('http://localhost:3000/api/details/getExpense' , {withCredentials:true}) 
@@ -61,10 +61,12 @@ const ExpenseData = ({children}) =>{
      }
 
     const handelOnExpenseEdit = async() =>{
+
         setPage("expense")
     }
 
     const haldelOnIncomeEdit = async() =>{
+
         setPage("income")
        
     }
@@ -72,6 +74,7 @@ const ExpenseData = ({children}) =>{
     const handelOnExpenseDelete = async() =>{
     try {
             const response = await axios.delete(`http://localhost:3000/api/expense/deleteExpense/${getExpenseId}` , {withCredentials:true})
+            alert('You want to Expense Delete')
             console.log(response.data)
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message
@@ -83,6 +86,7 @@ const ExpenseData = ({children}) =>{
     try {
             console.log("Income delete Click!")
             const response = await axios.delete(`http://localhost:3000/api/auth/deleteIncome/${getIncomeId}` , {withCredentials:true})
+              alert('You want to Income Delete')
             console.log(response.data)
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message
@@ -90,10 +94,22 @@ const ExpenseData = ({children}) =>{
         }
     } 
 
-    const editExpenseData = async(data) =>{
+    const editExpenseData = async(ExpenseData) =>{
         try {
-            console.log(data)
-            const response = await axios.patch(`http://localhost:3000/api/expense/edit/${expenseId}` , data , {withCredentials : true})
+            console.log(ExpenseData)
+            const response = await axios.patch(`http://localhost:3000/api/expense/edit/${expenseId}` , ExpenseData , {withCredentials : true})
+            console.log(response.data)
+        } catch (error) {
+            const errMsg = error.response?.data?.error || error.message
+            console.log(errMsg)
+        }
+    }
+
+    const editIncomeData = async(incomeData) =>{
+        try {
+            console.log(incomeData)
+            console.log(incomeId)
+            const response = await axios.patch(`http://localhost:3000/api/auth/editIncome/${incomeId}` , incomeData , {withCredentials:true})
             console.log(response.data)
         } catch (error) {
             const errMsg = error.response?.data?.error || error.message
@@ -109,6 +125,7 @@ const ExpenseData = ({children}) =>{
             getIncomeId,
             getExpenseId,
             page,
+            editIncomeData,
             setPage,
             setExpenseId,
             setIncomeId,

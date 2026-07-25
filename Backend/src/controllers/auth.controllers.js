@@ -368,23 +368,52 @@ const deteleIncome = async(req , res) =>{
 
 const editIncome = async(req ,res) =>{
     try {
-      const {addIncome,title,date,paymentMode,discription} = req.body
         const id = req.params.id
         const userId = req.user.id
+
+        const oldIncome = await Income.findOne({
+            _id:id,
+            userId:userId
+        })
+        
+        if(!oldIncome){
+            return res.status(400).json({
+                success:false,
+                message:"Incom not found!"
+            })
+        }
+    if(req.body.addIncome !== undefined){
+
+        const difference = Number(addIncome) - oldIncome.addIncome 
+            
+        const  walletUpdate = await Wallet.findOneAndUpdate(
+        {userId},
+        {
+            $inc:{
+                totalWallet:difference
+            }
+        },
+        {new:true }
+        )
+        
+        if(!walletUpdate){
+            return res.status(400).json({
+                success:false,
+                message:"Wallet not found!"
+            })
+        }
+    }
+
 
     const updatedIncome = await Income.findOneAndUpdate({
         _id:id,
         userId:userId
      } ,
      {
-      addIncome,
-      title,
-      date,
-      paymentMode,
-      discription
+        $set:req.body
      },
      {
-      returnDocument:'after',
+      new:true,
       runValidators: true,  
     }
     )

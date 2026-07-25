@@ -3,11 +3,15 @@ import { ExpenseContext } from "../context/ExpenseContext"
 import { WalletContext } from "../context/WalletContext"
 
 import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
-// import { RechartsDevtools } from '@recharts/devtools';
+import { PieChart, Pie, Label } from 'recharts';
+
 
 const Analytics = () =>{
  const {expense} = useContext(ExpenseContext)
  const {wallet} = useContext(WalletContext)
+
+
+
 
     return(
         <>
@@ -54,8 +58,22 @@ const Analytics = () =>{
     />
   </AreaChart>
 </div>
-       </div>
-        </>
+</div>
+      <div className="flex justify-around mt-20 text-gray-200">
+        <div>
+          <h1>Expense</h1>
+          <div>
+            
+          </div>
+        </div>
+        <div>
+          <h1>Wallet</h1>
+          <div>
+              
+          </div>
+        </div>
+      </div>
+</>
     )
 }
 
@@ -63,5 +81,7 @@ export default Analytics
 
 
 
+
+   
 
 

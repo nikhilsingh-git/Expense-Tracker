@@ -13,16 +13,6 @@ const Profile = () =>{
                     <h1 className="text-4xl font-sans font-medium" >Welcome <span className="uppercase font-bold">&nbsp;{profileData?.fullName}👋</span></h1>
                     <p className="pt-3 font-sans text-lg font-light">Track your money smarter.</p>
                     <p>See where your money goes and stay on budget.</p>
-                    <div className="text-gray-400 mt-15 flex justify-around">
-                        <button className="w-28 cursor-pointer rounded-4xl  h-12 bg-cyan-300/60 text-olive-900 font-medium mx-2
-                         hover:text-white hover:bg-cyan-300 hover:border-gray-950">Budget </button>
-                        <button className="w-28 cursor-pointer rounded-4xl  h-12 bg-cyan-300/60 text-olive-900 font-medium mx-2
-                         hover:text-white hover:bg-cyan-300 hover:border-gray-950">Transactions</button>
-                        <button className="w-28 cursor-pointer rounded-4xl  h-12 bg-cyan-300/60 text-olive-900 font-medium mx-2
-                         hover:text-white hover:bg-cyan-300 hover:border-gray-950">view</button>
-                        <button className="w-28 cursor-pointer rounded-4xl  h-12 bg-cyan-300/60 text-olive-900 font-medium mx-2
-                         hover:text-white hover:bg-cyan-300 hover:border-gray-950">History</button>
-                    </div>
                 </div>
                 <div className="px-25 text-gray-300">
                     <div className=" w-50 h-50 rounded-full overflow-hidden">

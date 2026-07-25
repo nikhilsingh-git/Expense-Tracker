@@ -23,7 +23,7 @@ const incomeSchema = new mongoose.Schema({
         required: true,
         enum: ['Cash', 'Credit Card', 'Debit Card', 'UPI', 'Net Banking'] 
     },
-    discription: { 
+    description: { 
         type: String,
         default: ""
     }

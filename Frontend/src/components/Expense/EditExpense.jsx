@@ -8,13 +8,13 @@ const amount = useRef()
 const category = useRef()
 const paymentMode = useRef()
 const date = useRef()
-const Description = useRef()
+const description = useRef()
 
 const {editExpenseData} = useContext(ExpenseContext)
 const {setPage} = useContext(ExpenseContext)
 const[errMsg , setErrmsg] = useState("")
 
-    const ExpenseFormSubmit = async(e) =>{
+    const expenseFormSubmit = async(e) =>{
           e.preventDefault()
         const expenseData = {
           
@@ -32,8 +32,8 @@ const[errMsg , setErrmsg] = useState("")
     if (date.current.value)
     expenseData.date = date.current.value;
 
-    if (Description.current.value.trim())
-    expenseData.Description = Description.current.value;
+    if (description.current.value.trim())
+    expenseData.description = description.current.value;
 
         editExpenseData(expenseData)
         setPage("view")
@@ -53,7 +53,7 @@ const[errMsg , setErrmsg] = useState("")
                 <p>Review and update your expense details before saving.</p>
             </div>
             <div className="w-200 m-auto mt-5 ">
-                <form onSubmit={(e)=>ExpenseFormSubmit(e)}>
+                <form onSubmit={(e)=>expenseFormSubmit(e)}>
                          
                         <div className="flex flex-col font-sans font-medium ms-5 py-10 ">
                         <p className="text-lg font-sans font-medium text-red-400 mb-5">
@@ -68,7 +68,7 @@ const[errMsg , setErrmsg] = useState("")
                         
                         <label htmlFor="" className="my-2 font-sans font-medium text-md">Category</label>
                         <input type="text" name="category"
-                        placeholder="Amount"
+                        placeholder="Category"
                         className=" h-12 w-full outline-0 border pl-5 bg-transparent focus:ring-1 focus:ring-blue-600  focus:outline-2 focus:outline-blue-600
                         rounded-xl mb-3"
                         ref={category} />
@@ -98,7 +98,7 @@ const[errMsg , setErrmsg] = useState("")
                         <textarea name="" id="" placeholder="Description..."
                         className="mb-10  w-full outline-0 border pl-5 bg-transparent focus:ring-1 focus:ring-blue-600  focus:outline-2 focus:outline-blue-600
                         rounded-xl  "
-                        ref={Description}
+                        ref={description}
                         rows={3}></textarea>
 
                         <div className="flex justify-around">

@@ -121,7 +121,7 @@ const View = () =>{
                           key={value._id}
                           onClick={()=>{
                             setGetIncomeId(getIncomeId === value._id ? null : value._id)
-                            setExpenseId(value._id)
+                            setIncomeId(value._id)
                           }
                           }>
                             <td className="text-left px-10">

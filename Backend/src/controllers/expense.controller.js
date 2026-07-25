@@ -109,7 +109,40 @@ const updateExpense = async(req , res)=>{
     
       const expenseId = req.params.id
       const userId = req.user.id
+    
+      const oldExpense = await expenseModel.findOne({
+        _id:expenseId,
+        client:userId
+      })
 
+      if(!oldExpense){
+        return res.status(400).json({
+            success:false,
+            message:"Expense not found!"
+        })
+      }
+
+     if (req.body.amount !== undefined) {
+      const difference = Number(req.body.amount) - oldExpense.amount;
+
+      const wallet = await Wallet.findOneAndUpdate(
+        { userId },
+        {
+          $inc: {
+            totalWallet: -difference,
+          },
+        },
+        { new: true }
+      )
+
+      if (!wallet) {
+        return res.status(404).json({
+          success: false,
+          message: "Wallet not found!",
+        });
+      }
+    }
+    
      const updatedExpense = await expenseModel.findOneAndUpdate(
         { _id: expenseId ,
             client:userId
@@ -133,9 +166,7 @@ const updateExpense = async(req , res)=>{
        res.status(201).json({
         success:true,
         message:'updated successfully!',
-         updatedExpense,
-         getSingleExpense
-
+         updatedExpense
        })
   } catch (error) {
 
@@ -143,7 +174,6 @@ const updateExpense = async(req , res)=>{
      res.status(400).json({
         success : false,
         message:'Not updated Expenses!',
-        data : null,
         error:error.message
      })
   }

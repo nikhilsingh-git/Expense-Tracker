@@ -34,7 +34,6 @@ return(
           <Route path ='create-expence' element={<ExpenseCreate />} />
           <Route path='view-transactions' element={<View />} />
           <Route path='analytics' element={<Analytics />} />
-          <Route path='budget-planner' element={<BudgetPlanner />} />
         </Route>
       </Routes>
       </ExpenseData>
