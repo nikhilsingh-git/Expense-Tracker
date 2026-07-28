@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const Income = require('../models/incom.model')
 const Wallet = require('../models/wallet.model')
+const mongoose = require('mongoose')
 
 // const genretToken = async(req,res,cb)=>{
 
@@ -443,6 +444,71 @@ const editIncome = async(req ,res) =>{
 }
 
 
+const monthlyIncome = async(req,res) =>{
+    try {
+        const userId = req.user.id
+
+        if(!userId){
+            return res.status(400).json({
+                success:false,
+                message:"User not login!"
+            })
+        }
+
+        const today = new Date()
+
+        const firstDate = new Date(
+         today.getFullYear(),
+         today.getMonth(),
+        1
+        )
+
+        const lastDate = new Date (
+            today.getFullYear(),
+            today.getMonth() +1 ,
+            1
+        )
+
+    const monthlyResult = await Income.aggregate([
+        {
+            $match:{
+                userId : new mongoose.Types.ObjectId(userId),
+                date:{
+                    $gte:firstDate,
+                    $lt:lastDate
+                }
+            },
+        },
+        {
+            $group:{
+                _id:null,
+                totalIncome:{
+                    $sum: "$addIncome"
+                }
+            }
+        }
+    ])
+
+     const monthlyIncomeAmount = monthlyResult.length > 0 ? monthlyResult[0].totalIncome : 0
+    
+    res.status(200).json({
+        success:true,
+        message:"Monthly Income are there!",
+        monthlyIncomeAmount
+    })
+
+    } catch (error) {
+        console.log("error" , error)
+        res.status(500).json({
+            success:false,
+            message:"Somthing want worng!",
+            error:error.message
+        })
+        
+    }
+}
+
+
 module.exports =
     {
      register,
@@ -452,5 +518,6 @@ module.exports =
      changePassword,
      getAllIncome,
      deteleIncome,
-     editIncome
+     editIncome,
+     monthlyIncome
     } 

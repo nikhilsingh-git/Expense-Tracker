@@ -12,29 +12,61 @@ const Card = () =>{
    const {profileData} = useContext(ProfileContext)
    const {wallet} = useContext(WalletContext)
    const {monthlyExpense} = useContext(ProfileContext)
+   const {monthlyIncome} = useContext(ProfileContext)
+
+   const savings = Number(profileData.monthlyBudget) - Number(monthlyExpense)
+
     return( 
         <>
         <div className="flex justify-around items-center text-center  w-full h-60 px-20 font-serif">
-            <div className="bg-[#071321] w-60 h-40 rounded-2xl text-gray-300 border border-[#132739] ">
-                
-                <h1 className="text-xl mt-3 font-sans">Total Balance</h1>
-                <h1 className="text-lg font-sans ">{"\u20B9"}<span>{wallet?.totalWallet}</span></h1>
+            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
+            hover:border hover:border-cyan-400 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(34,200,194,0.35)]
+            cursor-pointer">
+                <h1 className="text-5xl text-cyan-400 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
+                    <IoWallet />
+                </h1>
+                <h1 className="text-sm font-sans absolute top-8 left-18 font-bold">Total Balance</h1>
+                <h1 className="text-xl font-sans absolute top-13 left-22 text-cyan-500 font-bold hover:[text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
+                    {"\u20B9"}
+                    <span>{wallet?.totalWallet}</span>
+                </h1>
             </div>
-            <div className="bg-[#071321] w-60 h-40 rounded-2xl text-gray-300 border border-[#132739]">
-                <h1 className="text-xl mt-3 font-sans">This Month Income</h1>
-                <h1 className="text-lg font-sans ">{"\u20B9"}<span>{profileData?.monthlyBudget}</span></h1>
-                
+            
+            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
+            hover:border hover:border-green-400 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(34,200,194,0.35)]
+            cursor-pointer">
+                <h1 className="text-5xl text-green-400 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
+                    <FaRegArrowAltCircleUp />
+                </h1>
+                <h1 className="text-xs font-sans absolute top-8 left-17 font-bold">This Month Income</h1>
+                <h1 className="text-2xl font-sans absolute top-12 left-22 text-green-500 font-bold hover:[text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
+                    {"\u20B9"}
+                    <span>{monthlyIncome}</span>
+                </h1>
             </div>
-            <div className="bg-[#071321] w-60 h-40 rounded-2xl text-gray-300  border border-[#132739]">
-                <h1 className="text-xl  mt-3 font-sans">This month Expenses</h1>
-                <h1 className="text-lg font-sans ">{"\u20B9"}<span>{monthlyExpense}</span></h1>
-                {/* <img src="" alt="" /> */}
+
+            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
+            hover:border hover:border-red-500 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,80,0,0.35)]
+            cursor-pointer">
+                <h1 className="text-5xl text-red-500 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(197,0,0,0.5)]">
+                    <FaRegArrowAltCircleDown />
+                </h1>
+                <h1 className="text-xs font-sans absolute top-8 left-17 font-bold">This Month Expenses</h1>
+                <h1 className="text-xl font-sans absolute top-13 left-22 text-red-500 font-bold hover:[text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
+                    {"\u20B9"}<span>{monthlyExpense}</span>
+                </h1>
             </div>
-            <div className="bg-[#071321] w-60 h-40 rounded-2xl text-gray-300  border border-[#132739]">
-                <GoGoal />
-                <h1 className="text-xl mt-3 font-sans">Savings</h1>
-                <h1 className="text-lg font-sans ">{"\u20B9"}<span>00.00</span></h1>
-                {/* <img src="" alt="" /> */}
+            
+            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
+            hover:border hover:border-blue-500 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(100,0,250,0.35)]
+            cursor-pointer">
+                <h1 className="text-5xl text-blue-500 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
+                    <GoGoal />
+                </h1>
+                <h1 className="text-sm font-sans absolute top-8 left-20 font-bold">Savings</h1>
+                <h1 className="text-xl font-sans absolute top-13 left-20 text-blue-500 font-bold hover:[text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
+                    {"\u20B9"}<span>{savings}</span>
+                </h1>
             </div>
         </div>
         </>

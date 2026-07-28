@@ -8,10 +8,10 @@ import ExpenseCreate from "./components/Client/ExpenseCreate";
 import DashboardPage from "./components/Client/DashboardPage";
 import View from "./components/Client/View";
 import Analytics from "./components/Client/Analytics";
-import BudgetPlanner from "./components/Client/BudgetPlanner";
 import ContextData from "./components/context/ProfileContext";
 import ExpenseData from "./components/context/ExpenseContext";
 import WalletData from "./components/context/WalletContext";
+import EditProfile from "./components/Expense/EditProfilr";
 
 
 const app = () =>{
@@ -35,6 +35,7 @@ return(
           <Route path='view-transactions' element={<View />} />
           <Route path='analytics' element={<Analytics />} />
         </Route>
+        <Route path="/edit-profile" element={<EditProfile />}/>
       </Routes>
       </ExpenseData>
       </WalletData>
@@ -50,6 +51,7 @@ return(
     {/* <ExpenseCreate /> */}
     {/* <EditExpense></EditExpense> */}
     {/* <EditIncome></EditIncome> */}
+    {/* <EditProfile></EditProfile> */}
 
   </>
 )

@@ -1,5 +1,5 @@
 
-import {useContext, useRef, useState } from "react"
+import {useContext, useEffect, useRef, useState } from "react"
 import { ExpenseContext } from "../context/ExpenseContext"
 
 const EditExpense = () =>{
@@ -11,8 +11,17 @@ const date = useRef()
 const description = useRef()
 
 const {editExpenseData} = useContext(ExpenseContext)
+const {singleExpense} = useContext(ExpenseContext)
 const {setPage} = useContext(ExpenseContext)
 const[errMsg , setErrmsg] = useState("")
+
+useEffect(()=>{
+        amount.current.value = singleExpense?.amount
+        category.current.value = singleExpense?.category
+        paymentMode.current.value = singleExpense?.paymentMode
+        date.current.value = singleExpense?.date ? new Date(singleExpense?.date).toISOString().split("T")[0] : ""
+        description.current.value = singleExpense?.description  
+} ,[singleExpense])
 
     const expenseFormSubmit = async(e) =>{
           e.preventDefault()

@@ -104,4 +104,58 @@ const getprofileData = async(req , res)=>{
     }
 }
 
-module.exports = {profile , getprofileData} 
+const editProfile = async(req ,res) =>{
+    try {
+        const userId = req.user.id
+        
+        if(!userId){
+        return res.status(400).json({
+            success:false,
+            message:"User is not login"
+            
+        })
+    }
+
+    const updateData ={
+        ...req.body,
+    }
+    if(req.file){
+         const result = await uploadFile(req.file.buffer.toString("base64"))
+        updateData.inputFile = result.url
+    }
+
+    const updatedProfile = await profileModel.findOneAndUpdate(
+        {
+        userId:userId
+        },
+        {
+            $set:updateData
+        },
+        {
+            new:true , runValidators:true
+        }
+    )
+
+    if(!updatedProfile){
+        return res.status(400).json({
+            success:false,
+            message:"Profile not found!"
+        })
+    }
+
+res.status(201).json({
+    success:true,
+    message:"Profile Updated!",
+    updatedProfile
+})
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:"Somthing want worng!",
+            error: error.message
+        })
+    }
+}
+
+
+module.exports = {profile , getprofileData , editProfile} 

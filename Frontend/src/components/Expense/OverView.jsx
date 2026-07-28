@@ -1,9 +1,15 @@
 import { useContext } from 'react';
 import { PieChart, Pie, Label } from 'recharts';
 import { ExpenseContext } from '../context/ExpenseContext';
+import { Cell } from 'recharts';
+import { Tooltip } from 'recharts';
+import { Legend } from 'recharts';
+import { ResponsiveContainer } from 'recharts';
 
 import { FcIdea } from "react-icons/fc";
 import { RiDoubleQuotesL } from "react-icons/ri";
+import { WalletContext } from '../context/WalletContext';
+import { ProfileContext } from '../context/ProfileContext';
 
 
 
@@ -12,24 +18,59 @@ const OverView = () =>{
 const {expense} = useContext(ExpenseContext)
 const {income} = useContext(ExpenseContext)
 
- const MyPie = () => (
-  <Pie data={expense} dataKey="amount" nameKey="category " outerRadius="80%" innerRadius="50%" isAnimationActive={false} />
-);
+const {wallet} = useContext(WalletContext)
+const{monthlyExpense} = useContext(ProfileContext)
+const{profileData} = useContext(ProfileContext)
+
+
+   const savings = Number(profileData.monthlyBudget) - Number(monthlyExpense)
+
+const pieData = [
+  {
+    name: "Income",
+    value: wallet?.totalWallet,
+  },
+  {
+    name: "Expense",
+    value: monthlyExpense,
+  },
+  {
+    name: "Saving",
+    value: savings,
+  },
+]
+const COLORS = [
+  "#22c55e", // Green - Income
+  "#ef4444", // Red - Expense
+  "#3b82f6", // Blue - Saving
+]
     return(
         <>
         <div className="flex justify-around w-full text-white px-20 pt-5 pb-15 ">
-            <div className="bg-[#071321] 0 w-90 h-80 rounded-md border border-[#132739] relative ">
-                    <div className='absolute w-90 h-80 bottom-45 '>
-                        <PieChart
-                        responsive
-                        className="w-60 h-60 mt-50"
-                         >
-                        <MyPie />
-                        
-                        <Label position="center" fill="#666">
-                        Totel Expense
-                       </Label>
-                        </PieChart>
+            <div className="bg-[#071321]  w-90 h-80 rounded-md border border-[#132739]  ">
+                    <div className=' w-[360px] h-[320px]'>
+                          <ResponsiveContainer width="100%" height="100%">
+           <PieChart
+          responsive
+        >
+          <Pie
+            data={pieData}
+            cx="50%" 
+            cy="50%" 
+            innerRadius={50} 
+            outerRadius={100} 
+            paddingAngle={5} 
+            dataKey="value"
+          >
+            {pieData.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index]} />
+            ))}
+          </Pie>
+          <Tooltip formatter={(value) => [`₹${value}`, 'Amount']} /> 
+          <Label>Total Incom</Label>
+          <Legend verticalAlign="bottom" height={36} />
+        </PieChart>
+      </ResponsiveContainer>
                     </div>
             </div>
                 <div className="w-90 h-80 border border-[#132739] rounded-lg overflow-scroll scrollbar-hide bg-[#071321]">

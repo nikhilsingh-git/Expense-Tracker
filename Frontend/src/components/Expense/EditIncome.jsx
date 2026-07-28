@@ -12,6 +12,15 @@ const EditIncome = () =>{
 
     const {editIncomeData} = useContext(ExpenseContext)
     const {setPage} = useContext(ExpenseContext)
+    const {singleIncome} = useContext(ExpenseContext)
+
+    useEffect(()=>{
+            addIncome.current.value = singleExpense?.addIncome
+            title.current.value = singleExpense?.title
+            paymentMode.current.value = singleExpense?.paymentMode
+            date.current.value = singleExpense?.date ? new Date(singleExpense?.date).toISOString().split("T")[0] : ""
+            description.current.value = singleExpense?.description  
+    } ,[singleExpense])
 
     const incomeFormSubmit = (e) =>{
           e.preventDefault()

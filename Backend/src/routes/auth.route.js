@@ -13,5 +13,6 @@ route.post('/income' , authMiddleWare , controllers.addIncome)
 route.get('/getAllIncome' ,authMiddleWare , controllers.getAllIncome) 
 route.delete('/deleteIncome/:id' ,authMiddleWare, controllers.deteleIncome)
 route.patch('/editIncome/:id' , authMiddleWare , controllers.editIncome)
+route.get('/monthlyIncome' , authMiddleWare , controllers.monthlyIncome)
 
 module.exports = route
