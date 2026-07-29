@@ -82,7 +82,7 @@ const View = () =>{
                             <td className="text-left px-10">
                                 {new Date(item.date).toLocaleDateString("en-IN", {
                                     day: "2-digit",
-                                    month: "short",
+                                    month: "numeric",
                                     year: "numeric",
                                 })}</td>
                             <td className="text-left px-10">{item.category}</td>
@@ -127,7 +127,7 @@ const View = () =>{
                             <td className="text-left px-10">
                                 {new Date(value.date).toLocaleDateString("en-IN", {
                                     day: "2-digit",
-                                    month: "short",
+                                    month: "numeric",
                                     year: "numeric",
                                 })}</td>
                             <td className="text-left px-10">{value.title}</td>

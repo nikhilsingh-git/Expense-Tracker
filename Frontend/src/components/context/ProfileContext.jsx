@@ -1,17 +1,20 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileContext = createContext();
 
 const ContextData = ({ children }) => {
+     const navigate = useNavigate()
 
       const [profileData , setProfileData] = useState()
       const [loading , setLoading] = useState(true)
 
       const [monthlyExpense , setMonthlyExpense] = useState()
       const [monthlyIncome , setMonthlyIncome] = useState()
+
 
         useEffect(()=>{
         const getData = async()=>{
@@ -57,6 +60,30 @@ const ContextData = ({ children }) => {
          getMonthlyIncome()
     } ,[])
 
+    const editProfile = async(formData) => {
+        try {
+            const response = await axios.patch('http://localhost:3000/api/auth/editProfile' , formData , {withCredentials:true})
+        } catch (error) {
+            const errorMsg = error.response?.data?.message || error.message
+            console.log(error)
+        }
+    }
+
+    const logoutOnClick = async()=>{
+        try {
+            const response = await axios.post('http://localhost:3000/api/auth/logout',{} , {withCredentials:true})
+            console.log(response.data)
+            console.log(response.data.message)
+
+            navigate("/")
+
+
+        } catch (error) {
+            const errorMsg = error.response?.data?.message || error.message
+            console.log(error)
+            
+        }
+    }
     
 
     return (
@@ -65,6 +92,8 @@ const ContextData = ({ children }) => {
             profileData,
             monthlyExpense,
             monthlyIncome,
+            editProfile,
+            logoutOnClick
         }}>
             {children}
         </ProfileContext.Provider>

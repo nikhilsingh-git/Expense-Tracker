@@ -1,6 +1,7 @@
 import { useContext} from "react"
 import { ExpenseContext } from "../context/ExpenseContext"
 import { useRef } from "react"
+import { useEffect } from "react"
 
 const EditIncome = () =>{
 
@@ -15,12 +16,12 @@ const EditIncome = () =>{
     const {singleIncome} = useContext(ExpenseContext)
 
     useEffect(()=>{
-            addIncome.current.value = singleExpense?.addIncome
-            title.current.value = singleExpense?.title
-            paymentMode.current.value = singleExpense?.paymentMode
-            date.current.value = singleExpense?.date ? new Date(singleExpense?.date).toISOString().split("T")[0] : ""
-            description.current.value = singleExpense?.description  
-    } ,[singleExpense])
+            addIncome.current.value = singleIncome?.addIncome
+            title.current.value = singleIncome?.title
+            paymentMode.current.value = singleIncome?.paymentMode
+            date.current.value = singleIncome?.date ? new Date(singleIncome?.date).toISOString().split("T")[0] : ""
+            description.current.value = singleIncome?.description  
+    } ,[singleIncome])
 
     const incomeFormSubmit = (e) =>{
           e.preventDefault()
@@ -43,13 +44,6 @@ const EditIncome = () =>{
         }  
         editIncomeData(incomeData)
         setPage("view")
-
-        addIncome.current.value = ""
-        title.current.value=""
-        paymentMode.current.value=""
-        date.current.value=""
-        description.current.value=""
-
     }
     return(
         <>
@@ -61,31 +55,28 @@ const EditIncome = () =>{
             <div className="w-200 m-auto mt-5 ">
                 <form onSubmit={(e)=>incomeFormSubmit(e)}>
                         <div className="flex flex-col font-sans font-medium ms-5 py-10 ">
-                        <p className="text-lg font-sans font-medium text-red-400 mb-5">
-                            Hello
-                        </p>
-                        <label htmlFor="" className="my-2 font-sans font-medium text-md">Add Income (₹)</label>
+                        <label  className="my-2 font-sans font-medium text-md">Add Income (₹)</label>
                         <input type="text" name="amount"
                         placeholder="Add Income"
                         className=" h-12 w-full outline-0 border pl-5 bg-transparent focus:ring-1 focus:ring-blue-600  focus:outline-2 focus:outline-blue-600
                         rounded-xl mb-3" 
                         ref={addIncome} />
                         
-                        <label htmlFor="" className="my-2 font-sans font-medium text-md">Title</label>
+                        <label  className="my-2 font-sans font-medium text-md">Title</label>
                         <input type="text" name="category"
                         placeholder="Amount"
                         className=" h-12 w-full outline-0 border pl-5 bg-transparent focus:ring-1 focus:ring-blue-600  focus:outline-2 focus:outline-blue-600
                         rounded-xl mb-3"
                         ref={title} />
                         
-                        <label htmlFor="" className="my-2 font-sans font-medium text-md">Data</label>
+                        <label className="my-2 font-sans font-medium text-md">Data</label>
                         <input type="date" name="" id=""
                         placeholder="Amount"
                         className=" h-12 w-full outline-0 border pl-5 bg-transparent focus:ring-1 focus:ring-blue-600  focus:outline-2 focus:outline-blue-600
                         rounded-xl mb-3"
                         ref={date}/>
 
-                          <label htmlFor="" className="my-2 font-sans font-medium text-md">Payment Method</label>
+                          <label className="my-2 font-sans font-medium text-md">Payment Method</label>
                         <select name="" id=""
                         className=" h-12 w-full outline-0 border pl-5 bg-transparent focus:ring-1 focus:ring-blue-600  focus:outline-2 focus:outline-blue-600
                         rounded-xl mb-3" 
@@ -99,7 +90,7 @@ const EditIncome = () =>{
                         </select>
 
                         
-                        <label htmlFor="" className="my-2 font-sans font-medium text-md">Description</label>
+                        <label className="my-2 font-sans font-medium text-md">Description</label>
                         <textarea name="" id="" placeholder="Description..."
                         className="mb-10  w-full outline-0 border pl-5 bg-transparent focus:ring-1 focus:ring-blue-600  focus:outline-2 focus:outline-blue-600
                         rounded-xl  "
@@ -108,7 +99,7 @@ const EditIncome = () =>{
 
                         <div className="flex justify-around">
                             <button className="bg-transparent border w-45 h-11 rounded-md cursor-pointer"
-                            >Cancel</button>
+                            >Back</button>
                             <button type="submit" className="bg-emerald-500 w-45 h-11 rounded-lg border cursor-pointer"
                             >Update</button>
                         </div>

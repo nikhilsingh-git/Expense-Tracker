@@ -155,7 +155,7 @@ const onChange = () =>{
                             focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
                             placeholder="Software Engineer,Student etc."
                             ref={occupation}
-                            name="Occupation"
+                            name="occupation"
                             />
                         </div>
                         <div>

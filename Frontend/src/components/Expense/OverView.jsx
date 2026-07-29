@@ -46,31 +46,31 @@ const COLORS = [
 ]
     return(
         <>
-        <div className="flex justify-around w-full text-white px-20 pt-5 pb-15 ">
+        <div className="flex justify-around w-full text-white px-20 pb-15">
             <div className="bg-[#071321]  w-90 h-80 rounded-md border border-[#132739]  ">
                     <div className=' w-[360px] h-[320px]'>
-                          <ResponsiveContainer width="100%" height="100%">
-           <PieChart
-          responsive
-        >
-          <Pie
-            data={pieData}
-            cx="50%" 
-            cy="50%" 
-            innerRadius={50} 
-            outerRadius={100} 
-            paddingAngle={5} 
-            dataKey="value"
-          >
-            {pieData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index]} />
-            ))}
-          </Pie>
-          <Tooltip formatter={(value) => [`₹${value}`, 'Amount']} /> 
-          <Label>Total Incom</Label>
-          <Legend verticalAlign="bottom" height={36} />
-        </PieChart>
-      </ResponsiveContainer>
+                     <ResponsiveContainer width="100%" height="100%">
+                       <PieChart
+                             responsive
+                           >
+                          <Pie
+                            data={pieData}
+                            cx="50%" 
+                            cy="50%" 
+                            innerRadius={50} 
+                            outerRadius={100} 
+                            paddingAngle={5} 
+                            dataKey="value"
+                          >
+                        {pieData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                        ))}
+                        </Pie>
+                        <Tooltip formatter={(value) => [`₹${value}`, 'Amount']} /> 
+                        <Label>Total Incom</Label>
+                        <Legend verticalAlign="bottom" height={36} />
+                      </PieChart>
+                     </ResponsiveContainer>
                     </div>
             </div>
                 <div className="w-90 h-80 border border-[#132739] rounded-lg overflow-scroll scrollbar-hide bg-[#071321]">

@@ -124,6 +124,8 @@ const editProfile = async(req ,res) =>{
         updateData.inputFile = result.url
     }
 
+    console.log(req.file)
+
     const updatedProfile = await profileModel.findOneAndUpdate(
         {
         userId:userId

@@ -31,7 +31,9 @@ const WalletData = ({children}) =>{
     return(
         <WalletContext.Provider value={{
             loading,
-            wallet
+            wallet,
+            setLoading,
+            setWallet
         }}>
             {children}
         </WalletContext.Provider>

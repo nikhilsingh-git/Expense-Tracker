@@ -8,6 +8,7 @@ const profileRoute = express.Router()
 
   profileRoute.post('/profile',authMiddleWare, upload.single('inputFile'), profileController.profile)
   profileRoute.get('/getProfileData', authMiddleWare, profileController.getprofileData)
+  profileRoute.patch('/editProfile' , authMiddleWare ,upload.single('inputFile'), profileController.editProfile)
 
 
 module.exports = profileRoute

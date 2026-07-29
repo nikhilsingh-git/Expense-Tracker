@@ -138,6 +138,34 @@ const login = async(req,res) => {
    }
 }
 
+const logout = async (req , res) =>{
+    try {
+        const userId = req.user.id
+        if(!userId){
+            return res.status(400).json({
+                success:false,
+                message:"User is not login!"
+            })
+        }
+
+        res.cookie('accessToken')
+        res.cookie('refershTokan')
+
+        res.status(200).json({
+            success:true,
+            message:"User logout Successfull!"
+        })
+    } catch (error) {
+        console.log("error" , error)
+        res.status(500).json({
+            success:false,
+            message:"Somthing want worng!",
+            error:error.message
+        })
+        
+    }
+}
+
 const viweDetails = async(req ,res) => {
     const userId = req.user.id
     try{
@@ -443,7 +471,6 @@ const editIncome = async(req ,res) =>{
     }
 }
 
-
 const monthlyIncome = async(req,res) =>{
     try {
         const userId = req.user.id
@@ -514,6 +541,7 @@ module.exports =
      register,
      addIncome,
      login ,
+     logout,
      viweDetails,
      changePassword,
      getAllIncome,

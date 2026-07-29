@@ -1,4 +1,4 @@
-import { useContext} from "react"
+import { Profiler, useContext} from "react"
 import { useRef } from "react"
 import { ProfileContext } from "../context/ProfileContext"
 import { useNavigate } from "react-router-dom"
@@ -10,6 +10,9 @@ const EditProfile = () =>{
 const [errorMsg , setErrorMsg] = useState("")
 const [image , setImage] = useState (null)
 const {profileData} =useContext(ProfileContext)
+const {editProfile} = useContext(ProfileContext)
+
+const navigate = useNavigate()
 
 const inputFile = useRef()
 const fullName = useRef()
@@ -55,19 +58,16 @@ useEffect(() => {
 const updateProfile =(e)=>{
     e.preventDefault()
 
-    const updatedData ={
-        fullName:fullName.current.value,
-        email:email.current.value, 
-        gender:gender.current.value, 
-        dob:dob.current.value, 
-        occupation:occupation.current.value, 
-        currency:currency.current.value ,
-        monthlyBudget:monthlyBudget.current.value, 
-        address:address.current.value, 
-        bio:bio.current.value
-    }
+      const formData = new FormData(e.target) 
 
-    console.log(updatedData)
+    editProfile(formData)
+    navigate('/api/auth/client-handel')
+
+}
+
+const backClicked = () =>{
+    e.preventDefault()
+    navigate('/api/auth/client-handel')
 }
     return(
         <>
@@ -78,7 +78,7 @@ const updateProfile =(e)=>{
                     <p className="text-sm pt-1 font-sans text-slate-500">Personalize your profile by updating the details that matter.</p>
                 </div>
                 <form className="font-sans text-sm py-10"
-                onChange={(e)=>updateProfile(e)}>
+                onSubmit={(e)=>updateProfile(e)}>
                     <div className="flex flex-col items-center justify-center">
                         <div className="border-2 border-dashed border-slate-500 bg-slate-300 hover:border-indigo-500 cursor-pointer rounded-full w-30 h-30 text-center
                         flex items-center justify-center overflow-hidden"
@@ -145,7 +145,7 @@ const updateProfile =(e)=>{
                             focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
                             placeholder="Software Engineer,Student etc."
                             ref={occupation}
-                            name="Occupation"
+                            name="occupation"
                             />
                         </div>
                         <div>
@@ -193,8 +193,11 @@ const updateProfile =(e)=>{
                             </textarea>
                         </div>
                     </div >
-                    <div className="px-15"> 
-                       <button type="submit" className="w-full h-9 mt-5 border bg-indigo-500 cursor-pointer text-slate-200 rounded-lg">Update Profile</button>
+                    <div className="px-15 font-sans font-medium "> 
+                       <button type="submit" className="w-50 h-9 mt-5  bg-emerald-500 cursor-pointer text-slate-950 rounded-lg ms-10
+                       hover:text-white">Update Profile</button>
+                       <button className=" w-50 h-9 border border-[#132639] bg-transparent cursor-pointer text-slate-950  rounded-lg ms-30"
+                       onClick={backClicked}>Back</button>
                     </div>
                    
                 </form>

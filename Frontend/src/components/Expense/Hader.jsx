@@ -24,8 +24,8 @@ const Hader = () =>{
                     <h1 className="mt-2 cursor-pointer underline text-md">Expense Tracker</h1>
                 </div>
                 <div>
-                    <h1 className="text-xl font-sans font-semibold ">
-                        Total Wallet &nbsp;:&nbsp;&nbsp;<span>{"\u20B9"}{wallet?.totalWallet}</span>
+                    <h1 className="text-lg">
+                       <span className="font-medium font-sans">Total Wallet</span>&nbsp;:&nbsp;&nbsp;<span className="text-emerald-400 font-sans font-bold cursor-pointer">{"\u20B9"}{wallet?.totalWallet}</span>
                     </h1>
                 </div>
             </div>

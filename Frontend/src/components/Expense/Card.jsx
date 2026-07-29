@@ -16,10 +16,12 @@ const Card = () =>{
 
    const savings = Number(profileData.monthlyBudget) - Number(monthlyExpense)
 
+   
+
     return( 
         <>
-        <div className="flex justify-around items-center text-center  w-full h-60 px-20 font-serif">
-            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
+        <div className="flex justify-around  text-center  w-full h-50 px-20  font-serif mt-10">
+            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative 
             hover:border hover:border-cyan-400 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(34,200,194,0.35)]
             cursor-pointer">
                 <h1 className="text-5xl text-cyan-400 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
@@ -65,7 +67,7 @@ const Card = () =>{
                 </h1>
                 <h1 className="text-sm font-sans absolute top-8 left-20 font-bold">Savings</h1>
                 <h1 className="text-xl font-sans absolute top-13 left-20 text-blue-500 font-bold hover:[text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
-                    {"\u20B9"}<span>{savings}</span>
+                    {"\u20B9"}<span>(savings)</span>
                 </h1>
             </div>
         </div>

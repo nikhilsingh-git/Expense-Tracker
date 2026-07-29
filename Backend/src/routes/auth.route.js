@@ -6,6 +6,7 @@ const route = express.Router()
 
 route.post('/register' , controllers.register)
 route.post('/login',  controllers.login)
+route.post('/logout' , authMiddleWare , controllers.logout)
 route.get('/details', authMiddleWare ,controllers.viweDetails)
 route.post('/changePassword' , authMiddleWare, controllers.changePassword)
 // route.post('/view' , controllers.viewUsers)

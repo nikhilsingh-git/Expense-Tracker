@@ -108,8 +108,6 @@ const ExpenseData = ({children}) =>{
 
     const editIncomeData = async(incomeData) =>{
         try {
-            console.log(incomeData)
-            console.log(incomeId)
             const response = await axios.patch(`http://localhost:3000/api/auth/editIncome/${incomeId}` , incomeData , {withCredentials:true})
             console.log(response.data)
         } catch (error) {
@@ -128,9 +126,14 @@ const ExpenseData = ({children}) =>{
             page,
             singleIncome,
             singleExpense,
+            setLoading,
             editIncomeData,
             setPage,
+            setExpense,
+            setIncome,
             setExpenseId,
+            setSingleExpense,
+            setSingleIncome,
             setIncomeId,
             handelOnBack,
             setGetExpenseId,

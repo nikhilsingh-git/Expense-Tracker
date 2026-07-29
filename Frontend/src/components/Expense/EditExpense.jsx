@@ -19,7 +19,7 @@ useEffect(()=>{
         amount.current.value = singleExpense?.amount
         category.current.value = singleExpense?.category
         paymentMode.current.value = singleExpense?.paymentMode
-        date.current.value = singleExpense?.date ? new Date(singleExpense?.date).toISOString().split("T")[0] : ""
+        date.current.value = singleExpense?.date ? new Date(singleExpense.date).toISOString().split("T")[0]  : ""
         description.current.value = singleExpense?.description  
 } ,[singleExpense])
 
@@ -38,7 +38,7 @@ useEffect(()=>{
     if (paymentMode.current.value.trim())
     expenseData.paymentMode = paymentMode.current.value;
 
-    if (date.current.value)
+    if (date.current.value.trim())
     expenseData.date = date.current.value;
 
     if (description.current.value.trim())
@@ -46,12 +46,6 @@ useEffect(()=>{
 
         editExpenseData(expenseData)
         setPage("view")
-        
-        amount.current.value = ""
-        category.current.value=""
-        paymentMode.current.value=""
-        date.current.value=""
-        Description.current.value=""
     }
 
     return (
@@ -112,7 +106,7 @@ useEffect(()=>{
 
                         <div className="flex justify-around">
                             <button className="bg-transparent border w-45 h-11 rounded-md cursor-pointer"
-                            >Cancel</button>
+                            >Back</button>
                             <button type="submit" className="bg-emerald-500 w-45 h-11 rounded-lg border cursor-pointer"
                             >Update</button>
                         </div>

@@ -11,7 +11,7 @@ import Analytics from "./components/Client/Analytics";
 import ContextData from "./components/context/ProfileContext";
 import ExpenseData from "./components/context/ExpenseContext";
 import WalletData from "./components/context/WalletContext";
-import EditProfile from "./components/Expense/EditProfilr";
+import EditProfile from "./components/Expense/EditProfile";
 
 
 const app = () =>{
