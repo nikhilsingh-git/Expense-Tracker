@@ -12,6 +12,7 @@ import ContextData from "./components/context/ProfileContext";
 import ExpenseData from "./components/context/ExpenseContext";
 import WalletData from "./components/context/WalletContext";
 import EditProfile from "./components/Expense/EditProfile";
+import ChangePassword from "./components/Expense/ChangePassword";
 
 
 const app = () =>{
@@ -36,6 +37,7 @@ return(
           <Route path='analytics' element={<Analytics />} />
         </Route>
         <Route path="/edit-profile" element={<EditProfile />}/>
+        <Route path="/change-password" element={<ChangePassword />}/>
       </Routes>
       </ExpenseData>
       </WalletData>
@@ -52,9 +54,39 @@ return(
     {/* <EditExpense></EditExpense> */}
     {/* <EditIncome></EditIncome> */}
     {/* <EditProfile></EditProfile> */}
+    {/* <ChangePassword></ChangePassword> */}
 
   </>
 )
 }
 
 export default app;
+
+
+
+
+
+
+// import { PieChart, Pie } from "recharts";
+
+// function App() {
+//   return (
+//     <PieChart width={300} height={300}>
+//       <Pie
+//         data={[
+//           { name: "A", value: 100 },
+//           { name: "B", value: 50 },
+//         ]}
+//         outerRadius={60}
+//         innerRadius={40}
+//         dataKey="value"
+//         cx={150}
+//         cy={150}
+//         outerRadius={80}
+//         fill="#22c55e"
+//       />
+//     </PieChart>
+//   );
+// }
+
+// export default App;

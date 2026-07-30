@@ -31,9 +31,9 @@ const Regester = () =>{
         
         try {
             const response = await axios.post('http://localhost:3000/api/auth/register' , registerData)
-            console.log('Register successfully!');
-            console.log(response.data)
+            alert(response?.data?.message)
             navigate('/api/auth/login')
+            await fetchExpense();
             
             username.current.value = ""
             email.current.value = ""

@@ -1,8 +1,10 @@
 import profile from "../../assets/profile.png"
+import { Link } from "react-router-dom"
 import { useContext, useState } from "react"
 import { ProfileContext } from "../context/ProfileContext"
 import { useNavigate } from "react-router-dom"
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { IoMdArrowBack } from "react-icons/io";
 
 import { CiUser } from "react-icons/ci";
 import { TbLockPassword } from "react-icons/tb";
@@ -12,6 +14,7 @@ const Profile = () =>{
 
     const {profileData} = useContext(ProfileContext)
     const {logoutOnClick} = useContext(ProfileContext)
+    const {setShowDetails} = useContext(ProfileContext)
     const navigate = useNavigate()
     const [show , setShow] = useState(false)
 
@@ -21,7 +24,7 @@ const Profile = () =>{
 
     return(
         <>
-            <div className="flex justify-between py-8  px-10">
+            <div className="flex justify-between py-8  px-10 ">
                 <div className="text-gray-300 px-25 text-center mt-10">
                     <h1 className="text-4xl font-sans font-medium text-cyan-300" >Welcome, <span className="uppercase font-bold ">&nbsp;{profileData?.fullName}👋</span></h1>
                     <p className="pt-3 font-sans text-lg font-light">Track your money smarter.</p>
@@ -33,13 +36,16 @@ const Profile = () =>{
                         <img src={profileData?.inputFile} alt="Profile icon" />
                     </div>
                     <div className="pt-5 ps-5  font-sans font-medium ">
-                        <h1 className="text-3xl font-bold font-sans capitalize">{profileData?.fullName}</h1>
-                        <h1 className="text-xl capitalize font-sans font-medium py-1 px-2">{profileData?.occupation}</h1>
-                        <h1 className="text-xs mx-2">{profileData?.bio}</h1>
-                        
+                        <div>
+                         <h1 className="text-3xl font-bold font-sans capitalize">{profileData?.fullName}</h1>
+                         <h1 className="text-xl capitalize font-sans font-medium py-1 px-2">{profileData?.occupation}</h1>
+                         <h1 className="text-xs mx-2">{profileData?.bio}</h1>
+                        </div>
+
+
                     <div className="flex justify-around gap-3 ">
                         <button className="bg-transparent mt-5 w-40 h-12 rounded-xl border border-[#132739] cursor-pointer text-md font-sans font-medium
-                        hover:bg-cyan-300/50 hover:text-gray-950 " 
+                        hover:bg-gray-400 hover:text-gray-950 " 
                         onClick={(e)=>editProfileChange(e)}>
                             Edit Profile
                         </button>
@@ -51,16 +57,25 @@ const Profile = () =>{
                     <div className="w-52 bg-[#071321] border border-[#132739] rounded-xl shadow-[0_0_20px_rgba(34,197,94,0.15)] text-gray-300 font-sans overflow-hidden">
 
                      <ul className="py-2">
+                        <li className="flex items-center gap-3 px-4 py-3 hover:bg-[#132230] hover:text-orange-400 cursor-pointer transition-all duration-300"
+                        onClick={()=>setShow(false)}>
+                     <IoMdArrowBack className="text-xl" />
+                    <span>Back</span>
+                   </li>
 
-                    <li className="flex items-center gap-3 px-4 py-3 hover:bg-[#132230] hover:text-cyan-400 cursor-pointer transition-all duration-300">
+                    <li className="flex items-center gap-3 px-4 py-3 hover:bg-[#132230] hover:text-cyan-400 cursor-pointer transition-all duration-300"
+                    onClick={()=>setShowDetails(true)}>
                    <CiUser className="text-xl" />
                    <span>View Details</span>
                     </li>
-
-                    <li className="flex items-center gap-3 px-4 py-3 hover:bg-[#132230] hover:text-yellow-400 cursor-pointer transition-all duration-300">
+                    
+                    <Link to={'/change-password'}>
+                    <li className="flex items-center gap-3 px-4 py-3 hover:bg-[#132230] hover:text-yellow-400 cursor-pointer transition-all duration-300"
+                    >
                      <TbLockPassword className="text-xl" />
                     <span>Change Password</span>
                    </li>
+                   </Link>
                     
                     {/* <hr className="mx-10 text-red-400"/> */}
                    <li className="flex border border-[#132769] items-center gap-3 px-4 py-3 hover:bg-red-500/20 hover:text-red-400 cursor-pointer transition-all duration-300"
@@ -71,10 +86,9 @@ const Profile = () =>{
 
              </ul>
 
-            </div>
+                    </div>
                     }
                     
-            
                     </div>
                     
                 </div>

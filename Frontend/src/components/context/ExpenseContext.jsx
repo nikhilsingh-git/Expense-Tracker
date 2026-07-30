@@ -15,16 +15,14 @@ const ExpenseData = ({children}) =>{
      const[singleIncome , setSingleIncome] = useState() 
     const [page , setPage] = useState("view")
 
-    const [expenseId , setExpenseId] = useState(null)
-    const [incomeId , setIncomeId] = useState(null)
 
      const [getExpenseId , setGetExpenseId] = useState(null)
      const [getIncomeId , setGetIncomeId] = useState(null)
 
+
      const navigate = useNavigate()
 
-    useEffect(()=>{
-      const getExpense = async()=>{
+    const fatchExpense = async()=>{
         try {
            const response = await axios.get('http://localhost:3000/api/details/getExpense' , {withCredentials:true}) 
            setExpense(response.data.expense)
@@ -35,12 +33,11 @@ const ExpenseData = ({children}) =>{
             setLoading(false)
         }
        }
-
-       getExpense()
+    useEffect(()=>{
+     fatchExpense()
     },[])
 
-    useEffect(()=>{
-        const getAllIncome = async()=>{
+     const fatchIncome = async()=>{
           
             try {
                 const response = await axios.get('http://localhost:3000/api/auth/getAllIncome' , {withCredentials:true})
@@ -49,9 +46,10 @@ const ExpenseData = ({children}) =>{
                 const errorMsg = error.response?.data?.message || error.message
             }
         }
+    useEffect(()=>{
+        fatchIncome()
+    },[])
 
-        getAllIncome()
-    })
 
     const handelOnBack = () =>{
         setGetExpenseId(null)
@@ -71,30 +69,8 @@ const ExpenseData = ({children}) =>{
         setSingleIncome(getSingleIncome)
        
     }
-
-    const handelOnExpenseDelete = async() =>{
-    try {
-            const response = await axios.delete(`http://localhost:3000/api/expense/deleteExpense/${getExpenseId}` , {withCredentials:true})
-            alert('You want to Expense Delete')
-            console.log(response.data)
-        } catch (error) {
-            const errorMsg = error.response?.data?.message || error.message
-            console.log(errorMsg)
-        }
-    } 
-
-    const handelOnIncomeDelete = async() =>{
-    try {
-            console.log("Income delete Click!")
-            const response = await axios.delete(`http://localhost:3000/api/auth/deleteIncome/${getIncomeId}` , {withCredentials:true})
-              alert('You want to Income Delete')
-            console.log(response.data)
-        } catch (error) {
-            const errorMsg = error.response?.data?.message || error.message
-            console.log(errorMsg)
-        }
-    } 
-
+  
+   
     const editExpenseData = async(ExpenseData) =>{
         try {
             console.log(ExpenseData)
@@ -114,8 +90,7 @@ const ExpenseData = ({children}) =>{
             const errMsg = error.response?.data?.error || error.message
             console.log(errMsg)
         }
-    }
-  
+    }  
     return(
         <ExpenseContext.Provider value={{
             expense,
@@ -131,18 +106,16 @@ const ExpenseData = ({children}) =>{
             setPage,
             setExpense,
             setIncome,
-            setExpenseId,
             setSingleExpense,
             setSingleIncome,
-            setIncomeId,
             handelOnBack,
             setGetExpenseId,
             setGetIncomeId,
             handelOnExpenseEdit,
-            handelOnExpenseDelete,
-            handelOnIncomeDelete,
             haldelOnIncomeEdit,
-            editExpenseData
+            editExpenseData,
+            fatchIncome,
+            fatchExpense 
             
         }}>
             {children}

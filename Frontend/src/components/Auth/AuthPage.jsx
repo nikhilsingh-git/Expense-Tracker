@@ -7,6 +7,10 @@ import { FaFacebook } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import axios from 'axios'
+import { useContext } from 'react';
+import {ProfileContext} from '../context/ProfileContext'
+import {ExpenseContext} from '../context/ExpenseContext'
+import { WalletContext } from '../context/WalletContext';
 
 const AuthPage = () =>{
 
@@ -14,6 +18,15 @@ const AuthPage = () =>{
     const password = useRef()
 
     const [errorMsg , setErrorMsg] = useState("")
+
+    const {fatchProfile} = useContext(ProfileContext)
+    const {fatchMonthlyExpense} = useContext(ProfileContext)
+    const {fatchMonthlyIncome} = useContext(ProfileContext)
+
+    const {fatchIncome} = useContext(ExpenseContext)
+    const {fatchExpense} = useContext(ExpenseContext)
+
+    const {fatchWalletData} = useContext(WalletContext)
 
     const navigate = useNavigate()
 
@@ -26,7 +39,16 @@ const AuthPage = () =>{
       try {
             const response = await axios.post('http://localhost:3000/api/auth/login' , loginData ,{withCredentials:true})
             if(response.data.user.isProfileCreated){
-                navigate('/api/auth/client-handel')
+                await fatchProfile()
+                await fatchMonthlyExpense()
+                await fatchMonthlyIncome()
+                await fatchIncome()
+                await fatchExpense()
+                await fatchWalletData()
+                
+                navigate('/api/auth/client-handel' ,{
+                    replace:true
+                })
             }
             if(!response.data.user.isProfileCreated){
                 navigate('/api/auth/create-profile')

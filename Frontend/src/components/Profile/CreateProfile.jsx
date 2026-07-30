@@ -4,11 +4,22 @@ import { ProfileContext } from "../context/ProfileContext"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useState } from "react";
+import { WalletContext } from "../context/WalletContext"
+import { ExpenseContext } from "../context/ExpenseContext"
 
 const CreateProfile = () =>{
 
 const [errorMsg , setErrorMsg] = useState("")
 const [image , setImage] = useState (null)
+
+const {fatchProfile} = useContext(ProfileContext)
+const {fatchMonthlyExpense} = useContext(ProfileContext)
+const {fatchMonthlyIncome} = useContext(ProfileContext)
+
+const {fatchIncome} = useContext(ExpenseContext)
+const {fatchExpense} = useContext(ExpenseContext)
+
+const {fatchWalletData} = useContext(WalletContext)
 
 const inputFile = useRef()
 const fullName = useRef()
@@ -54,8 +65,13 @@ const haldelFormSubmit = async(e) =>{
 
         try {
             const response = await axios.post('http://localhost:3000/api/auth/profile' , formData , {withCredentials:true})
-            
-            navigate('/api/auth/client-handel')
+            await fatchProfile()
+                await fatchMonthlyExpense()
+                await fatchMonthlyIncome()
+                await fatchIncome()
+                await fatchExpense()
+                await fatchWalletData()
+            navigate('/api/auth/client-handel' , {replace :true})
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message;
             setErrorMsg(errorMsg)

@@ -4,10 +4,12 @@ import OverView from "../Expense/OverView"
 import { useContext, useEffect, useState } from "react"
 import axios from 'axios'
 import { ProfileContext } from "../context/ProfileContext"
+import PersonalDetails from "../Expense/PersonalDetails"
 
 const DashboardPage = () =>{
 
     const {loading} = useContext(ProfileContext) 
+    const{showDetails} = useContext(ProfileContext)
    
     
     if (loading) {
@@ -20,9 +22,11 @@ const DashboardPage = () =>{
 
     return(
         <>
-        <Profile></Profile>
-        <Card ></Card>
-        <OverView ></OverView>
+        {showDetails === false && <Profile />}
+        {showDetails === false && <Card />}
+        {showDetails === false && <OverView />}
+        {showDetails === true && <PersonalDetails />}
+        
         </>
     )
 }

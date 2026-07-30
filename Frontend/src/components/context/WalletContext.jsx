@@ -12,8 +12,7 @@ const WalletData = ({children}) =>{
     const [wallet , setWallet] = useState()
     const [loading , setLoading] = useState(true)
 
-     useEffect(()=>{
-        const getWalletData = async()=>{
+     const fatchWalletData = async()=>{
             try {
                 const response = await axios.get('http://localhost:3000/api/details/getWalletData' , {withCredentials:true})
                 setWallet(response.data.walletData)
@@ -24,14 +23,15 @@ const WalletData = ({children}) =>{
                 setLoading(false)
             }
         }
-
-        getWalletData()
+     useEffect(()=>{
+        fatchWalletData()
     },[])
 
     return(
         <WalletContext.Provider value={{
             loading,
             wallet,
+            fatchWalletData,
             setLoading,
             setWallet
         }}>

@@ -18,10 +18,21 @@ const Navbaar = () => {
                 <h2 className="cursor-pointer hover:text-[rgb(0,212,255)] underline">Contect</h2>
                 <h2 className="cursor-pointer hover:text-[rgb(0,212,255)] underline">About</h2>
             </div>
-            <div className="md:flex justify-around gap-5 hidden cursor-pointer hover:text-[rgb(0,212,255)]">
-                <Link to='/api/auth/login'><h1 className="text-[15px] hover:underline">Login</h1></Link>
-                <Link to='/api/auth/register'><h1 className="md:text-sm text-[15px] hover:underline">Sing up</h1></Link>
-            </div>
+            <div className="hidden md:flex items-center gap-4">
+            <Link
+                to="/api/auth/login"
+                className="px-5 py-2 rounded-lg border border-cyan-400 text-cyan-400 font-medium text-sm transition-all duration-300 hover:bg-cyan-400 hover:text-[#071321]"
+                 >
+                Login
+            </Link>
+
+            <Link
+             to="/api/auth/register"
+            className="px-5 py-2 rounded-lg bg-cyan-400 text-[#071321] font-semibold text-sm shadow-lg shadow-cyan-400/20 transition-all duration-300 hover:bg-cyan-300 hover:scale-105"
+            >
+         Sign Up
+         </Link>
+        </div>
             <div className="md:hidden">
                 <h1 className="text-3xl"><IoReorderThree /></h1>
             </div>

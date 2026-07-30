@@ -15,7 +15,7 @@ const ClientHandel = () =>{
                     <Outlet />
                 </div>
             </div>
-
+                
         </>
     )
 }

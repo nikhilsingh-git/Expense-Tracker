@@ -2,16 +2,12 @@ import { useContext } from "react"
 import { ExpenseContext } from "../context/ExpenseContext"
 import { WalletContext } from "../context/WalletContext"
 
-import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
-import { PieChart, Pie, Label } from 'recharts';
 
+import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
 const Analytics = () =>{
  const {expense} = useContext(ExpenseContext)
  const {wallet} = useContext(WalletContext)
-
-
-
 
     return(
         <>
@@ -22,6 +18,14 @@ const Analytics = () =>{
             </h1>
             <p className="text-gray-400 text-xl">Insights about your income,expenses and savings.</p>
          </div>
+{expense.length === 0 ? 
+<div className="m-auto mt-50 w-100 h-10 text-center">
+  <h1 className="text-gray-50 text-3xl font-bold font-sans">
+    No Expenses
+  </h1>
+  <p className="text-gray-300 mt-2 text-md leading-6 font-sans font-medium">Your expense list is empty. Add your first expense to begin tracking your spending.</p>
+</div>  :
+
 <div className="w-full mt-20 max-h-screen border border-[#132739]  bg-[#071321] ">    
  <AreaChart
      className="w-full max-w-[1149px] max-h-[70vh] aspect-[1.618]"
@@ -39,7 +43,7 @@ const Analytics = () =>{
         <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
       </linearGradient>
     </defs>
-    <XAxis dataKey="paymentMode" />
+    <XAxis dataKey="category" />
     <YAxis width="auto" dataKey="amount" />
     <Tooltip />
     <Area
@@ -58,21 +62,9 @@ const Analytics = () =>{
     />
   </AreaChart>
 </div>
+}
 </div>
-      <div className="flex justify-around mt-20 text-gray-200">
-        <div>
-          <h1>Expense</h1>
-          <div>
-            
-          </div>
-        </div>
-        <div>
-          <h1>Wallet</h1>
-          <div>
-              
-          </div>
-        </div>
-      </div>
+
 </>
     )
 }

@@ -67,7 +67,7 @@ const Card = () =>{
                 </h1>
                 <h1 className="text-sm font-sans absolute top-8 left-20 font-bold">Savings</h1>
                 <h1 className="text-xl font-sans absolute top-13 left-20 text-blue-500 font-bold hover:[text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
-                    {"\u20B9"}<span>(savings)</span>
+                    {"\u20B9"}<span>{savings}</span>
                 </h1>
             </div>
         </div>

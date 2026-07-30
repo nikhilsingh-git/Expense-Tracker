@@ -12,16 +12,17 @@ const ContextData = ({ children }) => {
       const [profileData , setProfileData] = useState()
       const [loading , setLoading] = useState(true)
 
+      const [showDetails , setShowDetails] = useState(false)
+
       const [monthlyExpense , setMonthlyExpense] = useState()
       const [monthlyIncome , setMonthlyIncome] = useState()
 
-
-        useEffect(()=>{
-        const getData = async()=>{
+ 
+      const fatchProfile = async()=>{
             try {
                 const response = await axios.get('http://localhost:3000/api/auth/getProfileData' , {withCredentials:true})
                  setProfileData(response.data.profileData)
-                  
+
             } catch (error) {
              const errorMsg = error.response?.data?.message || error.message
             }
@@ -29,40 +30,41 @@ const ContextData = ({ children }) => {
                 setLoading(false)
             }
         }
-         getData()
-       
+        useEffect(()=>{
+         fatchProfile()
     },[])
 
-     useEffect(()=>{
-        const getMonthlyExpense = async()=>{
+    const fatchMonthlyExpense = async()=>{
             try {
                 const response = await axios.get('http://localhost:3000/api/details/monthlyExpense' , {withCredentials:true})
                 setMonthlyExpense(response.data.monthlyExpenseAmount)
+               
             } catch (error) {
                 const errorMsg = error.response?.data?.messagge || error.messagge
              
             }
         }
-
-         getMonthlyExpense()
+     useEffect(()=>{
+       fatchMonthlyExpense()
     } ,[])
 
-      useEffect(()=>{
-        const getMonthlyIncome = async()=>{
+       const fatchMonthlyIncome = async()=>{
             try {
                 const response = await axios.get('http://localhost:3000/api/auth/monthlyIncome', {withCredentials:true})
                 setMonthlyIncome(response.data.monthlyIncomeAmount)
+             
             } catch (error) {
                 const errorMsg = error.response?.data?.messagge || error.messagge
             }
         }
-
-         getMonthlyIncome()
+      useEffect(()=>{
+         fatchMonthlyIncome()
     } ,[])
 
     const editProfile = async(formData) => {
         try {
             const response = await axios.patch('http://localhost:3000/api/auth/editProfile' , formData , {withCredentials:true})
+         
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message
             console.log(error)
@@ -72,11 +74,9 @@ const ContextData = ({ children }) => {
     const logoutOnClick = async()=>{
         try {
             const response = await axios.post('http://localhost:3000/api/auth/logout',{} , {withCredentials:true})
-            console.log(response.data)
-            console.log(response.data.message)
-
-            navigate("/")
-
+            navigate("/", {
+            replace: true
+            })
 
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message
@@ -84,16 +84,27 @@ const ContextData = ({ children }) => {
             
         }
     }
-    
 
-    return (
+    const backOnClick = () =>{
+        setShowDetails(false)
+    }
+
+    return ( 
         <ProfileContext.Provider value={{
             loading,
             profileData,
             monthlyExpense,
             monthlyIncome,
+            showDetails,
+
+            fatchProfile,
+            fatchMonthlyExpense,
+            fatchMonthlyIncome,
+
+            setShowDetails,
             editProfile,
-            logoutOnClick
+            logoutOnClick,
+            backOnClick
         }}>
             {children}
         </ProfileContext.Provider>

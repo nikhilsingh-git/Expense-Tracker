@@ -115,7 +115,7 @@ const onChange = () =>{
             title.current.value=""
             date.current.value=""
             paymentMode.current.value=""
-            discription.current.value=""
+            description.current.value=""
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message
             setIncomeErrMsg(errorMsg)
@@ -128,6 +128,7 @@ const onChange = () =>{
         title.current.value=""
         date.current.value=""
     }
+
 
 return(
         <>
@@ -232,12 +233,12 @@ return(
                             <option value="Net Banking">Net Banking</option>
                         </select>
                         
-                        <label htmlFor="">Date</label>
+                        <label>Date</label>
                         <input type="date" name="" id="" 
                         className="h-10 rounded-md bg-[#112439] mt-2 mb-5 outline-0 px-5"
                         ref={date}/>
 
-                        <label htmlFor="">Description</label>
+                        <label>Description</label>
                         <textarea name="" id="" className="rounded-md bg-[#112439] mt-2 mb-5 outline-0 px-5"
                         rows={3}
                         ref={description}
@@ -347,7 +348,7 @@ return(
                         <h1 className="text-gray-200 font-sans text-xl font-medium px-8 pt-4">Recent Transctions</h1>
                     </div>
                     <hr  className="border border-[#132739] mt-2 mx-6"/>
-                    {expense.length === 0 ? 
+                    {expense.length === 0 && income.length === 0 ? 
                     <div className="text-center m-auto mt-15 h-15 w-30 border border-[#132739] flex justify-center items-center
                 flex-col rounded-xl shadow-[0_0_20px_rgba(100,102,50,0.3)] cursor-pointer" >
                    <h1 className="text-sm text-gray-300 ">No Expense Yet!</h1>
