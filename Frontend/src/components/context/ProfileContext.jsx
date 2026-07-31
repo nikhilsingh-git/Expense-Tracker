@@ -9,6 +9,7 @@ export const ProfileContext = createContext();
 const ContextData = ({ children }) => {
      const navigate = useNavigate()
 
+
       const [profileData , setProfileData] = useState()
       const [loading , setLoading] = useState(true)
 
@@ -74,6 +75,7 @@ const ContextData = ({ children }) => {
     const logoutOnClick = async()=>{
         try {
             const response = await axios.post('http://localhost:3000/api/auth/logout',{} , {withCredentials:true})
+            
             navigate("/", {
             replace: true
             })

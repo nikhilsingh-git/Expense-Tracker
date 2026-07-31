@@ -10,7 +10,7 @@ const ExpenseData = ({children}) =>{
 
      const [expense , setExpense] = useState([])
      const [loading , setLoading] = useState(true)
-     const [income , setIncome] = useState()
+     const [income , setIncome] = useState([])
      const[singleExpense , setSingleExpense] = useState() 
      const[singleIncome , setSingleIncome] = useState() 
     const [page , setPage] = useState("view")
@@ -59,17 +59,16 @@ const ExpenseData = ({children}) =>{
     const handelOnExpenseEdit = async() =>{
         setPage("expense")
         
-        const getSingleExpense = await expense.find((item)=>item._id === expenseId)
+        const getSingleExpense = await expense.find((item)=>item._id === getExpenseId)
         setSingleExpense(getSingleExpense)
     }
 
     const haldelOnIncomeEdit = async() =>{
         setPage("income")
-        const getSingleIncome = await income.find((item)=> item._id === incomeId)
+        const getSingleIncome = await income.find((item)=> item._id === getIncomeId)
         setSingleIncome(getSingleIncome)
        
-    }
-  
+    } 
    
     const editExpenseData = async(ExpenseData) =>{
         try {

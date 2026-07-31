@@ -43,12 +43,12 @@ const profile = async(req ,res)=>{
          const userUpdated = await userModel.findOneAndUpdate(
              {_id:userId},
              {isProfileCreated:true},
-             {new:true , upsert:true}
+             {returnDocument: "after" , upsert:true}
           )
              
             await Wallet.create({
                 userId: userId,
-                totalWallet:monthlyBudget 
+                totalWallet: monthlyBudget ? Number(monthlyBudget) : 0
             })
 
          return res.status(201).json({

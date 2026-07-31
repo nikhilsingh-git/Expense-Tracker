@@ -19,14 +19,14 @@ const AuthPage = () =>{
 
     const [errorMsg , setErrorMsg] = useState("")
 
-    const {fatchProfile} = useContext(ProfileContext)
-    const {fatchMonthlyExpense} = useContext(ProfileContext)
-    const {fatchMonthlyIncome} = useContext(ProfileContext)
+    // const {fatchProfile} = useContext(ProfileContext)
+    // const {fatchMonthlyExpense} = useContext(ProfileContext)
+    // const {fatchMonthlyIncome} = useContext(ProfileContext)
 
-    const {fatchIncome} = useContext(ExpenseContext)
-    const {fatchExpense} = useContext(ExpenseContext)
+    // const {fatchIncome} = useContext(ExpenseContext)
+    // const {fatchExpense} = useContext(ExpenseContext)
 
-    const {fatchWalletData} = useContext(WalletContext)
+    // const {fatchWalletData} = useContext(WalletContext)
 
     const navigate = useNavigate()
 
@@ -39,12 +39,12 @@ const AuthPage = () =>{
       try {
             const response = await axios.post('http://localhost:3000/api/auth/login' , loginData ,{withCredentials:true})
             if(response.data.user.isProfileCreated){
-                await fatchProfile()
-                await fatchMonthlyExpense()
-                await fatchMonthlyIncome()
-                await fatchIncome()
-                await fatchExpense()
-                await fatchWalletData()
+                // await fatchProfile()
+                // await fatchMonthlyExpense()
+                // await fatchMonthlyIncome()
+                // await fatchIncome()
+                // await fatchExpense()
+                // await fatchWalletData()
                 
                 navigate('/api/auth/client-handel' ,{
                     replace:true

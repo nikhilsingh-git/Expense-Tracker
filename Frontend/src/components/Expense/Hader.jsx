@@ -25,7 +25,7 @@ const Hader = () =>{
                 </div>
                 <div>
                     <h1 className="text-lg">
-                       <span className="font-medium font-sans">Total Wallet</span>&nbsp;:&nbsp;&nbsp;<span className="text-emerald-400 font-sans font-bold cursor-pointer">{"\u20B9"}{wallet?.totalWallet}</span>
+                       <span className="font-medium font-sans">Total Wallet</span>&nbsp;:&nbsp;&nbsp;<span className="text-emerald-400 font-sans font-bold cursor-pointer">{"\u20B9"}{wallet?.totalWallet || 0}</span>
                     </h1>
                 </div>
             </div>

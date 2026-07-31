@@ -15,6 +15,8 @@ import { MdCastForEducation } from "react-icons/md";
 import { IoWalletSharp } from "react-icons/io5";
 import { HiOutlineDotsHorizontal } from "react-icons/hi"
 import { ExpenseContext } from "../context/ExpenseContext";
+import { ProfileContext } from "../context/ProfileContext";
+import { WalletContext } from "../context/WalletContext";
 
 
 const ExpenseCreate = () =>{
@@ -22,6 +24,16 @@ const ExpenseCreate = () =>{
 const {expense} = useContext(ExpenseContext)
 
 const {income} = useContext(ExpenseContext)
+
+
+    const {fatchProfile} = useContext(ProfileContext)
+    const {fatchMonthlyExpense} = useContext(ProfileContext)
+    const {fatchMonthlyIncome} = useContext(ProfileContext)
+
+    const {fatchIncome} = useContext(ExpenseContext)
+    const {fatchExpense} = useContext(ExpenseContext)
+
+    const {fatchWalletData} = useContext(WalletContext)
 
 const [togel , setTogel] = useState(false)
 const[errMsg , setErrMsg] = useState("")
@@ -68,7 +80,12 @@ const onChange = () =>{
 
             const response = await axios.post('http://localhost:3000/api/details/expense' ,expenseData ,{withCredentials:true})
             setExpenseSuccess(response.data.message)
-            console.log(response.data.message)
+                await fatchProfile()
+                await fatchMonthlyExpense()
+                await fatchMonthlyIncome()
+                await fatchIncome()
+                await fatchExpense()
+                await fatchWalletData()
             amount.current.value= ""
             category.current.value= ""
             paymentMode.current.value= ""
@@ -94,7 +111,7 @@ const onChange = () =>{
         category.current.value= ""
         paymentMethod.current.value= ""
         date.current.value= ""
-        discripton.current.value= "" 
+        description.current.value= "" 
     }
 
     const haldelOnIncome = async(e) =>{
@@ -107,11 +124,18 @@ const onChange = () =>{
           description:description.current.value
         }
 
+        console.log(addIncomeData)
+
         try {
             const response = await axios.post('http://localhost:3000/api/auth/income' , addIncomeData ,{withCredentials:true})
             setsuccessMsg(response.data.message)
-            
             addIncome.current.value=""
+                await fatchProfile()
+                await fatchMonthlyExpense()
+                await fatchMonthlyIncome()
+                await fatchIncome()
+                await fatchExpense()
+                await fatchWalletData()
             title.current.value=""
             date.current.value=""
             paymentMode.current.value=""
@@ -127,6 +151,8 @@ const onChange = () =>{
         addIncome.current.value=""
         title.current.value=""
         date.current.value=""
+        description.current.value=""
+        paymentMode.current.value=""
     }
 
 
@@ -248,7 +274,7 @@ return(
                             <button className="bg-[#112439] w-45 h-11 rounded cursor-pointer"
                             onClick={(e)=>handelOnCancelClick(e)}>Cancel</button>
                             <button className="bg-emerald-500 w-45 h-11 rounded cursor-pointer"
-                            onClick={(e)=>haldelOnExpense(e)}>Add Transaction</button>
+                            onClick={(e)=>haldelOnExpense(e)}>Add Expense</button>
                         </div>
                         </div>
                     </form>
@@ -348,7 +374,7 @@ return(
                         <h1 className="text-gray-200 font-sans text-xl font-medium px-8 pt-4">Recent Transctions</h1>
                     </div>
                     <hr  className="border border-[#132739] mt-2 mx-6"/>
-                    {expense.length === 0 && income.length === 0 ? 
+                    {expense?.length === 0 && income?.length === 0 ? 
                     <div className="text-center m-auto mt-15 h-15 w-30 border border-[#132739] flex justify-center items-center
                 flex-col rounded-xl shadow-[0_0_20px_rgba(100,102,50,0.3)] cursor-pointer" >
                    <h1 className="text-sm text-gray-300 ">No Expense Yet!</h1>

@@ -312,10 +312,10 @@ const addIncome = async(req,res) => {
       const  walletUpdate = await Wallet.findOneAndUpdate(
         {userId},
         {
-            $inc:{totalWallet:income},
+            $inc:{totalWallet:Number(income)  },
             $set:{title , date:date|| Date.now() }
         },
-        {new:true , upsert :true}
+        {returnDocument: "after" , upsert :true}
         )
        
 
