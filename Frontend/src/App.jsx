@@ -14,17 +14,24 @@ import WalletData from "./components/context/WalletContext";
 import EditProfile from "./components/Expense/EditProfile";
 import ChangePassword from "./components/Expense/ChangePassword";
 import ProtectedLayout from "../ProtectedLayout";
+import ContectService from "./components/services/ContectService";
+import AboutService from "./components/services/AboutService";
+import ConditionService from "./components/services/ConditionService";
 
 
 const app = () =>{
 
 return(
+
   <>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<FrontPage/>} />
         <Route path ='/api/auth/login' element={<AuthPage />} />
         <Route path ='/api/auth/register' element={<Register />} />
+        <Route path="/contect" element={<ContectService />}/>
+        <Route path="/about" element={<AboutService />}/>
+        <Route path="/tram-condition" element={<ConditionService />}/>
         <Route element={<ProtectedLayout />}>
           <Route path='/api/auth/create-profile' element={<CreateProfile />} />
           <Route path='/api/auth/view' element={<View />}/>
@@ -48,29 +55,3 @@ export default app;
 
 
 
-
-
-{/* 
-import { PieChart, Pie } from "recharts";
-
-function App() {
-  return (
-    <PieChart width={300} height={300}>
-      <Pie
-        data={[
-          { name: "A", value: 100 },
-          { name: "B", value: 50 },
-        ]}
-        outerRadius={60}
-        innerRadius={40}
-        dataKey="value"
-        cx={150}
-        cy={150}
-        outerRadius={80}
-        fill="#22c55e"
-      />
-    </PieChart>
-  );
-}
-
-export default App; */}

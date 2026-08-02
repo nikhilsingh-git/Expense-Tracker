@@ -6,17 +6,10 @@ const {uploadFile} = require('../servies/imagekit.servies')
 
 const profile = async(req ,res)=>{
 
-   try {
      const {fullName,email,gender,dob,occupation,currency,monthlyBudget, address, bio } = req.body
      const inputFile = req.file
      const userId = req.user.id
  
-     if(!inputFile){
-         return res.status(404).json({
-             message:"Please send image ,Image not Found"
-         })
-     }
-
      if(isNaN(monthlyBudget)){
         return res.status(400).json({
             success:false,
@@ -24,11 +17,12 @@ const profile = async(req ,res)=>{
         })
      }
  
-         const result = await uploadFile(req.file.buffer.toString("base64"))
+        //  const result = await uploadFile(req.file.buffer.toString("base64"))
+        const result = req.file ? await uploadFile(req.file.buffer.toString("base64")) : { url: "" };
  
          const userProfile = await profileModel.create({
              userId:userId,
-             inputFile: result.url,
+             inputFile: result.url || "",
              fullName,
              email,
              gender: gender || undefined, 
@@ -56,15 +50,7 @@ const profile = async(req ,res)=>{
          userProfile,
          userUpdated
           })
- 
-   } catch (err) {
-     console.log(`file not read ${err}`)
-        res.status(404).json({
-            success:false,
-            message:"Profile Data not found!",
-            err:err.message
-        })
-   }
+
 
 }
 
@@ -160,4 +146,4 @@ res.status(201).json({
 }
 
 
-module.exports = {profile , getprofileData , editProfile} 
+module.exports = {profile , getprofileData , editProfile}

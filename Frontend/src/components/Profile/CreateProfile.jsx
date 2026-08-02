@@ -6,6 +6,7 @@ import axios from "axios"
 import { useState } from "react";
 import { WalletContext } from "../context/WalletContext"
 import { ExpenseContext } from "../context/ExpenseContext"
+import { FaArrowRight } from "react-icons/fa"
 
 const CreateProfile = () =>{
 
@@ -65,7 +66,7 @@ const haldelFormSubmit = async(e) =>{
 
         try {
             const response = await axios.post('http://localhost:3000/api/auth/profile' , formData , {withCredentials:true})
-            await fatchProfile()
+                await fatchProfile()
                 await fatchMonthlyExpense()
                 await fatchMonthlyIncome()
                 await fatchIncome()
@@ -94,6 +95,50 @@ const onChange = () =>{
     setErrorMsg("")
 }
 
+const haldelOnSkip = async(e)=>{
+
+    console.log("skip Clicked!")
+
+    const data = {
+        inputFile:"",
+        fullName: "",
+        email: "",
+        gender: "",
+        dob: "",
+        occupation: "",
+        currency: "",
+        monthlyBudget: 0,
+        address: "",
+        bio: ""
+    };
+        try {
+            const response = await axios.post('http://localhost:3000/api/auth/profile' , data , {withCredentials:true})
+                await fatchProfile()
+                await fatchMonthlyExpense()
+                await fatchMonthlyIncome()
+                await fatchIncome()
+                await fatchExpense()
+                await fatchWalletData()
+            navigate('/api/auth/client-handel' , {replace :true})
+        
+        } catch (error) {
+            const errorMsg = error.response?.data?.message || error.message;
+            setErrorMsg(errorMsg)
+            console.log(errorMsg)
+
+            fullName.current.value = ""
+            inputFile.current.value = ""
+            email.current.value = ""
+            gender.current.value = ""
+            dob.current.value = ""
+            occupation.current.value = ""
+            currency.current.value = ""
+            monthlyBudget.current.value = ""
+            address.current.value = ""
+            bio.current.value = ""
+        }
+}
+
     return(
         <>
         <div className="min-h-screen bg-slate-300 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -105,6 +150,8 @@ const onChange = () =>{
                 <form action="" className="font-sans text-sm py-10"
                 onSubmit={(e)=>haldelFormSubmit(e)}
                 onChange={onChange}>
+                    <p className="text-red-600 font-sans text-md mt-5 ms-15">{errorMsg}</p> 
+
                     <div className="flex flex-col items-center justify-center">
                         <div className="border-2 border-dashed border-slate-500 bg-slate-300 hover:border-indigo-500 cursor-pointer rounded-full w-30 h-30 text-center
                         flex items-center justify-center overflow-hidden"
@@ -220,11 +267,19 @@ const onChange = () =>{
                         </div>
                     </div >
                     <div className="px-15"> 
-                       <button type="submit" className="w-full h-9 mt-5 border bg-indigo-500 cursor-pointer text-slate-200 rounded-lg">Create Profile</button>
+                       <button
+                       type="submit"
+                       className="w-full h-9 mt-5 border bg-indigo-500 cursor-pointer text-slate-200 rounded-lg">Create Profile</button>
                     </div>
-                    <p className="text-red-600 font-sans text-md mt-5 ms-15">{errorMsg}</p>
-                   
+                     <div className="flex text-md relative hover:font-medium mt-3 hover:text-blue-400 ms-160">
+                        <button 
+                        type="button"
+                        className=" mt-3 font-sans cursor-pointer "
+                        onClick={haldelOnSkip}>Skip</button>
+                        <h1 className="absolute top-4 left-8 cursor-pointer"><FaArrowRight /></h1>         
+                    </div>
                 </form>
+                
             </div>
         </div>
         </>

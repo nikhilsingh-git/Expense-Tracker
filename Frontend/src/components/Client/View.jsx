@@ -181,6 +181,7 @@ const View = () =>{
                                     month: "numeric",
                                     year: "numeric",
                                 })}</td>
+          
                             <td className="text-left px-10">{item.category}</td>
                             <td className="text-left px-10 text-red-400">-{item.amount}</td>
                             <td className="text-left px-10">{item.paymentMode}</td>

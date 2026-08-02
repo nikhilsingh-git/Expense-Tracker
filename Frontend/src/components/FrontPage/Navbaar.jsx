@@ -1,9 +1,20 @@
 import { IoReorderThree } from "react-icons/io5";
 import expenseTracker from "../../assets/expenseTracker.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbaar = () => {
+    const navigate = useNavigate()
+const contectClicked =() =>{
+    navigate('/contect')
+}
 
+const aboutClicked = () =>{
+    navigate('/about')
+}
+
+const ConditionClicked = () =>{
+    navigate('/tram-condition')
+}
     return (
     
         <div className="flex justify-between px-15 w-100% h-20 items-center font-serif font-semibold 
@@ -14,9 +25,12 @@ const Navbaar = () => {
             <Link to='/api/auth/login'><h1 className="mt-3 cursor-pointer hover:text-[rgb(0,212,255)] underline">Expense Tracker</h1></Link>
             </div>
             <div className="md:flex justify-around gap-8 hidden text-xl ">
-                <h2 className="cursor-pointer hover:text-[rgb(0,212,255)] underline">Trams & conditions</h2>
-                <h2 className="cursor-pointer hover:text-[rgb(0,212,255)] underline">Contect</h2>
-                <h2 className="cursor-pointer hover:text-[rgb(0,212,255)] underline">About</h2>
+                <h2 className="cursor-pointer hover:text-[rgb(0,212,255)] underline"
+                onClick={ConditionClicked}>Trams & conditions</h2>
+                <h2 className="cursor-pointer hover:text-[rgb(0,212,255)] underline"
+                onClick={contectClicked}>Contect</h2>
+                <h2 className="cursor-pointer hover:text-[rgb(0,212,255)] underline"
+                onClick={aboutClicked}>About</h2>
             </div>
             <div className="hidden md:flex items-center gap-4">
             <Link

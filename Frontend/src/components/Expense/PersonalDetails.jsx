@@ -23,44 +23,44 @@ const PersonalDetails = () =>{
         
                 <span className="text-gray-400 font-medium">Name</span>
                 <span className="text-white font-semibold capitalize">
-                    {profileData?.fullName}
+                    {profileData?.fullName && profileData.fullName}
                 </span>
         
                 <span className="text-gray-400 font-medium">Email</span>
                 <span className="text-white font-semibold break-all">
-                    {profileData?.email}
+                    {profileData?.email && profileData.email}
                 </span>
         
                 <span className="text-gray-400 font-medium">Gender</span>
                 <span className="text-white font-semibold capitalize">
-                    {profileData?.gender}
+                    {profileData?.gender && profileData.gender}
                 </span>
         
                 <span className="text-gray-400 font-medium">Date of Birth</span>
                 <span className="text-white font-semibold">
                     {profileData?.dob
-                        ? new Date(profileData.dob).toISOString().split("T")[0]
+                        ? new Date(profileData?.dob).toISOString().split("T")[0]
                         : "-"}
                 </span>
         
                 <span className="text-gray-400 font-medium">Occupation</span>
                 <span className="text-white font-semibold capitalize">
-                    {profileData?.occupation}
+                    {profileData?.occupation && profileData.occupation}
                 </span>
         
                 <span className="text-gray-400 font-medium">Monthly Budget</span>
                 <span className="text-green-400 font-bold">
-                    ₹ {profileData?.monthlyBudget}
+                    ₹ {profileData?.monthlyBudget && profileData.monthlyBudget}
                 </span>
         
                 <span className="text-gray-400 font-medium">Address</span>
                 <span className="text-white font-semibold capitalize">
-                    {profileData?.address}
+                    {profileData?.address && profileData.address}
                 </span>
         
                 <span className="text-gray-400 font-medium self-start">Bio</span>
                 <span className="text-white leading-7">
-                    {profileData?.bio}
+                    {profileData?.bio && profileData.bio}
                 </span>
         
             </div>

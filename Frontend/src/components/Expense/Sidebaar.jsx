@@ -1,9 +1,9 @@
+import profile from "../../assets/profile.png"
 import { FaHome } from "react-icons/fa";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { VscGraph } from "react-icons/vsc";
 import { RiFocus3Fill } from "react-icons/ri";
 import { CiViewTimeline } from "react-icons/ci";
-import profile from "../../assets/profile.png"
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProfileContext } from "../context/ProfileContext";
@@ -52,7 +52,7 @@ const Sidebaar = () =>{
                 </div >  
                      <div className="px-5 flex text-gray-300 relative">
                       <div className="w-10 h-10 mt-65 ms-0 rounded-full overflow-hidden ">
-                        <img src={profileData?.inputFile} alt="" />
+                        <img src={profileData?.inputFile ? profileData.inputFile : profile } alt="" />
                       </div>
                       <div className="absolute top-65 left-19">
                         <h1 className="capitalize">{profileData?.fullName}</h1>

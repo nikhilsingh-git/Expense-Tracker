@@ -1,4 +1,5 @@
 import profile from "../../assets/profile.png"
+
 import { Link } from "react-router-dom"
 import { useContext, useState } from "react"
 import { ProfileContext } from "../context/ProfileContext"
@@ -9,6 +10,8 @@ import { IoMdArrowBack } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
 import { TbLockPassword } from "react-icons/tb";
 import { MdOutlineLogout } from "react-icons/md";
+
+
 
 const Profile = () =>{
 
@@ -26,20 +29,20 @@ const Profile = () =>{
         <>
             <div className="flex justify-between py-8  px-10 ">
                 <div className="text-gray-300 px-25 text-center mt-10">
-                    <h1 className="text-4xl font-sans font-medium text-cyan-300" >Welcome, <span className="uppercase font-bold ">&nbsp;{profileData?.fullName}👋</span></h1>
+                    <h1 className="text-4xl font-sans font-medium text-cyan-300" >Welcome, <span className="uppercase font-bold ">&nbsp;{profileData?.fullName ? profileData.fullName : ""}👋</span></h1>
                     <p className="pt-3 font-sans text-lg font-light">Track your money smarter.</p>
                     <p>See where your money goes and stay on budget.</p>
                 </div>
                 
                 <div className="px-15 text-gray-300 flex justify-between">
                     <div className=" w-40 h-40 rounded-full overflow-hidden">
-                        <img src={profileData?.inputFile} alt="Profile icon" />
+                        <img src={profileData?.inputFile ? profileData?.inputFile : profile } alt="Profile icon" />
                     </div>
                     <div className="pt-5 ps-5  font-sans font-medium ">
                         <div>
-                         <h1 className="text-3xl font-bold font-sans capitalize">{profileData?.fullName}</h1>
-                         <h1 className="text-xl capitalize font-sans font-medium py-1 px-2">{profileData?.occupation}</h1>
-                         <h1 className="text-xs mx-2">{profileData?.bio}</h1>
+                         <h1 className="text-3xl font-bold font-sans capitalize">{profileData?.fullName && profileData.fullName}</h1>
+                         <h1 className="text-xl capitalize font-sans font-medium py-1 px-2">{profileData?.occupation && profileData.occupation}</h1>
+                         <h1 className="text-xs mx-2">{profileData?.bio && profileData.bio}</h1>
                         </div>
 
 

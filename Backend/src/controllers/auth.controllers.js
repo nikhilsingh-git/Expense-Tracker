@@ -258,6 +258,37 @@ const changePassword = async (req,res) => {
 }     
 }
 
+const isUserLogin = async(req,res) =>{
+    try {
+        const userId = req.user.id
+        if(!userId){
+            return res.status(400).json({
+                success:false,
+                message:'User is not login'
+            })
+        }
+        const loginUser = await userModel.findById(userId)
+
+        if(!loginUser){
+            return res.status(400).json({
+                success:false,
+                message:'User not found!'
+            })
+        }
+
+        res.status(200).json({
+            success:true,
+            message:'User Login!'
+        })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message:'Somthing want worng!',
+            error : error.message
+        })
+    }
+}
+
 // const viewUsers = async(req,res)=>{
 // try {
 //     const alluser = await userModel.find()
@@ -547,5 +578,6 @@ module.exports =
      getAllIncome,
      deteleIncome,
      editIncome,
-     monthlyIncome
+     monthlyIncome,
+     isUserLogin
     } 

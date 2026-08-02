@@ -14,9 +14,8 @@ const Card = () =>{
    const {monthlyExpense} = useContext(ProfileContext)
    const {monthlyIncome} = useContext(ProfileContext)
 
-   const savings = Number(profileData.monthlyBudget) - Number(monthlyExpense)
+   const savings = Number(profileData?.monthlyBudget || 0) - Number(monthlyExpense || 0)
 
-   
 
     return( 
         <>
@@ -41,7 +40,7 @@ const Card = () =>{
                     <FaRegArrowAltCircleUp />
                 </h1>
                 <h1 className="text-xs font-sans absolute top-8 left-17 font-bold">This Month Income</h1>
-                <h1 className="text-2xl font-sans absolute top-12 left-22 text-green-500 font-bold hover:[text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
+                <h1 className="text-2xl font-sans absolute top-12 left-19 text-green-500 font-bold hover:[text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
                     {"\u20B9"}
                     <span>{monthlyIncome}</span>
                 </h1>
