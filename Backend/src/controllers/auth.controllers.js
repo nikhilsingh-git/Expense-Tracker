@@ -49,7 +49,6 @@ const register = async (req, res) => {
       message: "regester successfully!",
       user,
       accessToken: accessToken,
-      refershTokan: refershTokan,
     });
   } catch (error) {
     res.status(401).json({
@@ -97,7 +96,6 @@ const login = async (req, res) => {
       message: "Login successFully!",
       user,
       accessToken: accessToken,
-      refershTokan: refershTokan,
     });
   } catch (error) {
     console.log("error:", error);
