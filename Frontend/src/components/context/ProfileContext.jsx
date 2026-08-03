@@ -73,7 +73,6 @@ const ContextData = ({ children }) => {
       );
     } catch (error) {
       const errorMsg = error.response?.data?.message || error.message;
-      console.log(error);
     }
   };
 
@@ -90,7 +89,6 @@ const ContextData = ({ children }) => {
       });
     } catch (error) {
       const errorMsg = error.response?.data?.message || error.message;
-      console.log(error);
     }
   };
 

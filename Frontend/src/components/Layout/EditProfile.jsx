@@ -87,6 +87,7 @@ const backClicked = () =>{
     return(
         <>
         <div className="min-h-screen bg-slate-300 flex items-center justify-center md:py-12 md:px-4 sm:px-6 lg:px-8">
+           
             <div className="m-auto  bg-slate-200 md:w-1/2 py-8 md:py-0 px-3 md:px-0 h-auto shadow-lg rounded-4xl">
                 <div className="text-center">
                     <h1 className="text-4xl font-extrabold capitalize pt-5 font-sans text-slate-800">Edit Your Profile</h1>

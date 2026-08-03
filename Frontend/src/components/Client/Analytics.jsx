@@ -43,7 +43,7 @@ const Analytics = () => {
         ) : (
           <div className="mx-10 md:mx-0">
             <div className="md:ms-10 mt-10 mb-8">
-              <div className="flex items-center gap-4 md:mt-15 " >
+              <div className="flex items-center gap-4 md:mt-15 ">
                 <div className="w-14 h-14 rounded-2xl bg-cyan-500/15 border border-cyan-500/20 flex items-center justify-center shadow-lg shadow-cyan-500/10">
                   <HiOutlinePresentationChartBar className="text-cyan-400 text-3xl" />
                 </div>
@@ -100,46 +100,50 @@ const Analytics = () => {
               </AreaChart>
             </div>
             <div className="mt-30">
-        <div className=" mb-8">
-          <div className="flex items-center gap-3 md:mx-15">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/15 flex items-center justify-center">
-              <HiOutlineChartBar className="text-cyan-400 text-2xl" />
+              <div className=" mb-8">
+                <div className="flex items-center gap-3 md:mx-15">
+                  <div className="w-12 h-12 rounded-xl bg-cyan-500/15 flex items-center justify-center">
+                    <HiOutlineChartBar className="text-cyan-400 text-2xl" />
+                  </div>
+
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-white">
+                      Expense <span className="text-cyan-400">Breakdown</span>
+                    </h2>
+
+                    <p className="text-gray-400 text-sm md:text-base mt-1">
+                      Analyze your spending across different categories and
+                      monitor your financial habits with interactive visual
+                      insights.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full ms-15 mt-5"></div>
+              </div>
+              <div>
+                <ResponsiveContainer width="100%" height={350}>
+                  <BarChart data={expense}>
+                    <CartesianGrid strokeDasharray="3 3" />
+
+                    <XAxis dataKey="category" />
+
+                    <YAxis />
+
+                    <Tooltip />
+
+                    <Bar
+                      dataKey="amount"
+                      fill="#06B6D4"
+                      radius={[8, 8, 0, 0]}
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </div>
-
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
-                Expense <span className="text-cyan-400">Breakdown</span>
-              </h2>
-
-              <p className="text-gray-400 text-sm md:text-base mt-1">
-                Analyze your spending across different categories and monitor
-                your financial habits with interactive visual insights.
-              </p>
-            </div>
-          </div>
-
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full ms-15 mt-5"></div>
-        </div>
-        <div>
-          <ResponsiveContainer width="100%" height={350}>
-            <BarChart data={expense}>
-              <CartesianGrid strokeDasharray="3 3" />
-
-              <XAxis dataKey="category" />
-
-              <YAxis />
-
-              <Tooltip />
-
-              <Bar dataKey="amount" fill="#06B6D4" radius={[8, 8, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
           </div>
         )}
       </div>
-      
     </>
   );
 };

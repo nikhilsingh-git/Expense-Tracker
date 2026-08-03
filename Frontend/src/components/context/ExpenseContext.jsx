@@ -75,7 +75,6 @@ const ExpenseData = ({ children }) => {
 
   const editExpenseData = async (ExpenseData) => {
     try {
-      console.log(ExpenseData);
       const response = await axios.patch(
         `http://localhost:3000/api/expense/edit/${expenseId}`,
         ExpenseData,
@@ -84,7 +83,6 @@ const ExpenseData = ({ children }) => {
       console.log(response.data);
     } catch (error) {
       const errMsg = error.response?.data?.error || error.message;
-      console.log(errMsg);
     }
   };
 
@@ -95,10 +93,9 @@ const ExpenseData = ({ children }) => {
         incomeData,
         { withCredentials: true },
       );
-      console.log(response.data);
     } catch (error) {
       const errMsg = error.response?.data?.error || error.message;
-      console.log(errMsg);
+
     }
   };
   return (

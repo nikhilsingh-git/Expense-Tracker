@@ -4,7 +4,6 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 import { useRef } from "react";
 import axios from "axios";
 
-// recent catogarys
 import { PiShoppingCartFill } from "react-icons/pi";
 import { MdEmojiTransportation } from "react-icons/md";
 import { SlEnergy } from "react-icons/sl";
@@ -47,7 +46,6 @@ const ExpenseCreate = () => {
 
   const addIncome = useRef();
   const title = useRef();
-  // const date = useRef()
 
   const handelIncomeClick = (e) => {
     setTogel(true);
