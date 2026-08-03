@@ -31,11 +31,11 @@ useEffect(()=>{
 },[])
 
 if (login === false) {
-    return <Navigate to='/api/auth/login' replace />;
+    return <Navigate to='/' replace />;
 }
 
 if(loading === true) {
-  return
+  return(
    <div className="fixed inset-0 bg-[#0F172A]/90 flex items-center justify-center z-50">
   <div className="text-center">
 
@@ -50,6 +50,7 @@ if(loading === true) {
     </h2>
   </div>
 </div>
+  )
 }
   return (
 
