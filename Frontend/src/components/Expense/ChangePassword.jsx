@@ -40,8 +40,8 @@ const changePasswordClicked = async(e) =>{
 
     return(
 <>
-    <div className="w-full mt-35 max-w-lg mx-auto bg-[#071321] border border-[#132739] rounded-2xl shadow-[0_0_25px_rgba(34,197,94,0.15)] p-8">
-            <div className="mb-8">
+    <div className="w-full h-screen md:h-auto md:mt-35 md:max-w-lg md:mx-auto bg-[#071321] border border-[#132739] rounded-2xl shadow-[0_0_25px_rgba(34,197,94,0.15)] p-8">
+            <div className="mb-8 mt-6 md:mt-0 px-5 md:px-0">
                 <h1 className="text-3xl font-bold text-white">
                 Change Your Password
                 </h1>
@@ -52,7 +52,7 @@ const changePasswordClicked = async(e) =>{
                 you to remember.
                 </p>
             </div>
-            <div className="space-y-10">
+            <div className="space-y-10 px-5 md:px-0">
                 <h1 className="text-red-500 ms-5 font-sans font-medium">{showError}</h1>
                 <form>
              <div>
@@ -94,16 +94,16 @@ const changePasswordClicked = async(e) =>{
                 />
             </div>
 
-            <div className="space-x-6 mt-5">
+            <div className="md:space-x-6 mt-5">
             <button
-            className="w-50 mt-2 py-3 rounded-xl bg-green-600 hover:bg-green-500 text-white font-semibold tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(34,197,94,0.35)] hover:scale-[1.02] active:scale-95 cursor-pointer"
+            className="md:w-50 md:mt-2 md:py-3 w-30 h-9 ms-5 md:ms-0 text-xs md:text-base rounded-xl bg-green-600 hover:bg-green-500 text-white font-semibold tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(34,197,94,0.35)] hover:scale-[1.02] active:scale-95 cursor-pointer"
             onClick={(e)=>changePasswordClicked(e)}>
             Update Password
             </button>
             
             <Link to={'/api/auth/client-handel'}>
             <button
-            className="w-50 mt-2 py-3 rounded-xl bg-transparent text-white font-semibold border border-[#132769] hover:bg-gray-300 hover:text-gray-900 cursor-pointer hover:scal-[-1.02] active:scale-95 tracking-wide transition-all duration-300 ease-in-out"
+            className="md:w-50 md:mt-2 md:py-3 w-30 h-9 ms-8 md:ms-0 text-xs md:text-base rounded-xl bg-transparent text-white font-semibold border border-[#132769] hover:bg-gray-300 hover:text-gray-900 cursor-pointer hover:scal-[-1.02] active:scale-95 tracking-wide transition-all duration-300 ease-in-out"
             >
             Back
             </button>

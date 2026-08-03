@@ -70,7 +70,7 @@ const AuthPage = () =>{
                 <div className="md:mt-30 mt-15 md:mx-35 mx-8">
                         <form>
                             <div className="flex flex-col gap-10 relative">
-                                <h1 className="uppercase md:mx-35 ms-30 text-3xl font-bold">sing in</h1>
+                                <h1 className="uppercase md:mx-35 text text-center text-3xl font-bold">sing in</h1>
                                 <span className='absolute top-23 left-5 opacity-60'><FaUser /></span>
                                 <input type="text" placeholder="Username or Email" className="md:w-110 w-90 h-12 border  rounded-2xl
                                 outline-none hover:border-gray-950 hover:border-2  placeholder-gray-500 pl-10 font-medium

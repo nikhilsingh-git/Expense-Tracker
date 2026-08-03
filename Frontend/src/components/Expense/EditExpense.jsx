@@ -1,6 +1,8 @@
 
 import {useContext, useEffect, useRef, useState } from "react"
 import { ExpenseContext } from "../context/ExpenseContext"
+import { WalletContext } from "../context/WalletContext"
+import { ProfileContext } from "../context/ProfileContext"
 
 const EditExpense = () =>{
 
@@ -14,6 +16,14 @@ const {editExpenseData} = useContext(ExpenseContext)
 const {singleExpense} = useContext(ExpenseContext)
 const {setPage} = useContext(ExpenseContext)
 const[errMsg , setErrmsg] = useState("")
+
+  const {fatchProfile} = useContext(ProfileContext)
+    const {fatchMonthlyExpense} = useContext(ProfileContext)
+    const {fatchMonthlyIncome} = useContext(ProfileContext)
+    const {fatchIncome} = useContext(ExpenseContext)
+    const {fatchExpense} = useContext(ExpenseContext)
+    const {fatchWalletData} = useContext(WalletContext)
+
 
 useEffect(()=>{
         amount.current.value = singleExpense?.amount
@@ -45,6 +55,12 @@ useEffect(()=>{
     expenseData.description = description.current.value;
 
         editExpenseData(expenseData)
+        await fatchProfile();
+    await fatchMonthlyExpense();
+      await fatchMonthlyIncome();
+      await fatchIncome();
+      await fatchExpense();
+      await fatchWalletData();
         setPage("view")
     }
 

@@ -65,7 +65,7 @@ const ContextData = ({ children }) => {
     const editProfile = async(formData) => {
         try {
             const response = await axios.patch('http://localhost:3000/api/auth/editProfile' , formData , {withCredentials:true})
-         
+              
         } catch (error) {
             const errorMsg = error.response?.data?.message || error.message
             console.log(error)

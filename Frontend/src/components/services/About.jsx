@@ -29,7 +29,7 @@ import { AiOutlineFileExcel } from "react-icons/ai";
 const About = () => {
   return (
     <>
-      <div className="bg-[#131c28] w-full ">
+      <div className="bg-[#131c28] w-full px-5 py-5 ">
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
             <div className="lg:w-1/2 text-white">

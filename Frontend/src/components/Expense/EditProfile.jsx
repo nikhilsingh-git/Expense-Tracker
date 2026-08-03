@@ -4,6 +4,8 @@ import { ProfileContext } from "../context/ProfileContext"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 import { useEffect } from "react";
+import { WalletContext } from "../context/WalletContext";
+import { ExpenseContext } from "../context/ExpenseContext";
 
 const EditProfile = () =>{
 
@@ -11,6 +13,13 @@ const [errorMsg , setErrorMsg] = useState("")
 const [image , setImage] = useState (null)
 const {profileData} =useContext(ProfileContext)
 const {editProfile} = useContext(ProfileContext)
+
+const {fatchProfile} = useContext(ProfileContext)
+const {fatchMonthlyExpense} = useContext(ProfileContext)
+const {fatchMonthlyIncome} = useContext(ProfileContext)
+const {fatchIncome} = useContext(ExpenseContext)
+const {fatchExpense} = useContext(ExpenseContext)
+const {fatchWalletData} = useContext(WalletContext)
 
 const navigate = useNavigate()
 
@@ -55,12 +64,18 @@ useEffect(() => {
   }
 }, [profileData]);
 
-const updateProfile =(e)=>{
+const updateProfile = async(e)=>{
     e.preventDefault()
 
       const formData = new FormData(e.target) 
 
     editProfile(formData)
+    await fatchProfile();
+    await fatchMonthlyExpense();
+      await fatchMonthlyIncome();
+      await fatchIncome();
+      await fatchExpense();
+      await fatchWalletData();
     navigate('/api/auth/client-handel')
 
 }
@@ -71,8 +86,8 @@ const backClicked = () =>{
 }
     return(
         <>
-        <div className="min-h-screen bg-slate-300 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="m-auto  bg-slate-200 w-1/2 h-auto shadow-lg rounded-4xl">
+        <div className="min-h-screen bg-slate-300 flex items-center justify-center md:py-12 md:px-4 sm:px-6 lg:px-8">
+            <div className="m-auto  bg-slate-200 md:w-1/2 py-8 md:py-0 px-3 md:px-0 h-auto shadow-lg rounded-4xl">
                 <div className="text-center">
                     <h1 className="text-4xl font-extrabold capitalize pt-5 font-sans text-slate-800">Edit Your Profile</h1>
                     <p className="text-sm pt-1 font-sans text-slate-500">Personalize your profile by updating the details that matter.</p>
@@ -193,10 +208,10 @@ const backClicked = () =>{
                             </textarea>
                         </div>
                     </div >
-                    <div className="px-15 font-sans font-medium "> 
-                       <button type="submit" className="w-50 h-9 mt-5  bg-emerald-500 cursor-pointer text-slate-950 rounded-lg ms-10
+                    <div className="md:px-15 font-sans font-medium"> 
+                       <button type="submit" className="md:w-50 w-30 h-9 mt-5  bg-emerald-500 cursor-pointer text-slate-950 rounded-lg md:ms-10 ms-15
                        hover:text-white">Update Profile</button>
-                       <button className=" w-50 h-9 border border-[#132639] bg-transparent cursor-pointer text-slate-950  rounded-lg ms-30"
+                       <button className=" md:w-50 w-30 h-9 border border-[#132639] bg-transparent cursor-pointer text-slate-950  rounded-lg md:ms-30 ms-5"
                        onClick={backClicked}>Back</button>
                     </div>
                    

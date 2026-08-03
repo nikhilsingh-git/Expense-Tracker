@@ -14,13 +14,15 @@ const Card = () =>{
    const {monthlyExpense} = useContext(ProfileContext)
    const {monthlyIncome} = useContext(ProfileContext)
 
+   console.log(monthlyExpense)
+
    const savings = Number(profileData?.monthlyBudget || 0) - Number(monthlyExpense || 0)
 
 
     return( 
         <>
-        <div className="flex justify-around  text-center  w-full h-50 px-20  font-serif mt-10">
-            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative 
+        <div className="md:flex justify-around text-center  w-full md:h-50 h-auto px-20  font-serif mt-10">
+            <div className="bg-[#071321] md:w-50 w-60 my-4 h-30 rounded-2xl text-gray-300 border border-[#132739] relative 
             hover:border hover:border-cyan-400 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(34,200,194,0.35)]
             cursor-pointer">
                 <h1 className="text-5xl text-cyan-400 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
@@ -33,7 +35,7 @@ const Card = () =>{
                 </h1>
             </div>
             
-            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
+            <div className="bg-[#071321] md:w-50 w-60 my-4 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
             hover:border hover:border-green-400 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(34,200,194,0.35)]
             cursor-pointer">
                 <h1 className="text-5xl text-green-400 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(34,197,94,0.5)]">
@@ -46,7 +48,7 @@ const Card = () =>{
                 </h1>
             </div>
 
-            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
+            <div className="bg-[#071321] md:w-50 my-4 w-60 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
             hover:border hover:border-red-500 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,80,0,0.35)]
             cursor-pointer">
                 <h1 className="text-5xl text-red-500 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(197,0,0,0.5)]">
@@ -58,7 +60,7 @@ const Card = () =>{
                 </h1>
             </div>
             
-            <div className="bg-[#071321] w-50 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
+            <div className="bg-[#071321] md:w-50 my-4 w-60 h-30 rounded-2xl text-gray-300 border border-[#132739] relative
             hover:border hover:border-blue-500 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(100,0,250,0.35)]
             cursor-pointer">
                 <h1 className="text-5xl text-blue-500 absolute top-8 left-3 [text-shadow:0_0_10px_rgba(34,197,94,0.5)]">

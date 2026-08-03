@@ -17,7 +17,6 @@ const profile = async(req ,res)=>{
         })
      }
  
-        //  const result = await uploadFile(req.file.buffer.toString("base64"))
         const result = req.file ? await uploadFile(req.file.buffer.toString("base64")) : { url: "" };
  
          const userProfile = await profileModel.create({
@@ -93,7 +92,7 @@ const getprofileData = async(req , res)=>{
 const editProfile = async(req ,res) =>{
     try {
         const userId = req.user.id
-        
+         const {fullName,email,gender,dob,occupation,currency,monthlyBudget, address, bio } = req.body
         if(!userId){
         return res.status(400).json({
             success:false,
@@ -110,8 +109,6 @@ const editProfile = async(req ,res) =>{
         updateData.inputFile = result.url
     }
 
-    console.log(req.file)
-
     const updatedProfile = await profileModel.findOneAndUpdate(
         {
         userId:userId
@@ -123,6 +120,14 @@ const editProfile = async(req ,res) =>{
             new:true , runValidators:true
         }
     )
+
+    await Wallet.findOneAndUpdate(
+        { userId: userId},
+        {totalWallet: monthlyBudget && Number(monthlyBudget)},
+        {
+            new:true
+        }
+        )
 
     if(!updatedProfile){
         return res.status(400).json({

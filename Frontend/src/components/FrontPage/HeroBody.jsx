@@ -48,4 +48,4 @@ const HeroBody = () => {
   );
 };
 
-export default HeroBody;
+export default HeroBody

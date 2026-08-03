@@ -2,6 +2,8 @@ import { useContext} from "react"
 import { ExpenseContext } from "../context/ExpenseContext"
 import { useRef } from "react"
 import { useEffect } from "react"
+import { WalletContext } from "../context/WalletContext"
+import { ProfileContext } from "../context/ProfileContext"
 
 const EditIncome = () =>{
 
@@ -15,6 +17,13 @@ const EditIncome = () =>{
     const {setPage} = useContext(ExpenseContext)
     const {singleIncome} = useContext(ExpenseContext)
 
+    const {fatchProfile} = useContext(ProfileContext)
+    const {fatchMonthlyExpense} = useContext(ProfileContext)
+    const {fatchMonthlyIncome} = useContext(ProfileContext)
+    const {fatchIncome} = useContext(ExpenseContext)
+    const {fatchExpense} = useContext(ExpenseContext)
+    const {fatchWalletData} = useContext(WalletContext)
+
     useEffect(()=>{
             addIncome.current.value = singleIncome?.addIncome
             title.current.value = singleIncome?.title
@@ -23,7 +32,7 @@ const EditIncome = () =>{
             description.current.value = singleIncome?.description  
     } ,[singleIncome])
 
-    const incomeFormSubmit = (e) =>{
+    const incomeFormSubmit = async(e) =>{
           e.preventDefault()
         const incomeData = {}
 
@@ -43,6 +52,13 @@ const EditIncome = () =>{
             incomeData.description = description.current.value
         }  
         editIncomeData(incomeData)
+
+           await fatchProfile();
+    await fatchMonthlyExpense();
+      await fatchMonthlyIncome();
+      await fatchIncome();
+      await fatchExpense();
+      await fatchWalletData();
         setPage("view")
     }
     return(
@@ -98,7 +114,7 @@ const EditIncome = () =>{
                         ref={description}></textarea>
 
                         <div className="flex justify-around">
-                            <button className="bg-transparent border w-45 h-11 rounded-md cursor-pointer"
+                            <button type="button" className="bg-transparent border w-45 h-11 rounded-md cursor-pointer"
                             >Back</button>
                             <button type="submit" className="bg-emerald-500 w-45 h-11 rounded-lg border cursor-pointer"
                             >Update</button>
