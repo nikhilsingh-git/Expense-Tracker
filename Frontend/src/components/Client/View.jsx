@@ -2,8 +2,8 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ExpenseContext } from "../context/ExpenseContext";
-import EditExpense from "../Expense/EditExpense";
-import EditIncome from "../Expense/EditIncome";
+import EditExpense from "../Layout/EditExpense";
+import EditIncome from "../Layout/EditIncome";
 
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
@@ -65,6 +65,13 @@ const View = () => {
         { withCredentials: true },
       );
       alert("Your Income Deleted!");
+      await fatchProfile();
+      await fatchMonthlyExpense();
+      await fatchMonthlyIncome();
+      await fatchIncome();
+      await fatchExpense();
+      await fatchWalletData();
+
       setShowIncomeDelete(false);
     } catch (error) {
       const errorMsg = error.response?.data?.message || error.message;
@@ -74,8 +81,18 @@ const View = () => {
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center bg-gray-950 text-cyan-400 text-xl font-bold">
-        Loading Transaction...
+      <div className="fixed inset-0 bg-[#0F172A]/90 flex items-center justify-center z-50 ">
+        <div className="text-center">
+          <div className="relative w-15 h-15 mx-auto">
+            <div className="absolute inset-0 rounded-full border-4 border-cyan-500/20"></div>
+
+            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-cyan-400 border-r-cyan-400 animate-spin"></div>
+          </div>
+
+          <h2 className="text-white text-2xl font-bold mt-6">View Expense</h2>
+
+          <p className="text-gray-400 mt-2">Preparing your Transaction...</p>
+        </div>
       </div>
     );
   }
@@ -184,7 +201,7 @@ const View = () => {
                     </p>
                   </div>
                 ) : (
-                  <div className="w-full overflow-x-auto">
+                  <div className="w-full">
                     <table className="min-w-[900px] w-full text-xs table-fixed border border-[#132739]">
                       <thead className="h-15 px-8 bg-slate-700 border-b border-[#132739] sticky top-0 z-100  ">
                         <tr>

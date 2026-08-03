@@ -126,7 +126,7 @@ const haldelOnSkip = async(e)=>{
             setErrorMsg(errorMsg)
             console.log(errorMsg)
 
-            fullName.current.value = ""
+            fullName.current.value = "-"
             inputFile.current.value = ""
             email.current.value = ""
             gender.current.value = ""

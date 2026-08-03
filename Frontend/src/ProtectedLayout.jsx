@@ -1,8 +1,7 @@
-
 import { Outlet } from "react-router-dom";
-import ContextData from "./src/components/context/ProfileContext";
-import WalletData from "./src/components/context/WalletContext";
-import ExpenseData from "./src/components/context/ExpenseContext";
+import ContextData from "./components/context/ProfileContext";
+import WalletData from "./components/context/WalletContext";
+import ExpenseData from "./components/context/ExpenseContext";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -36,7 +35,21 @@ if (login === false) {
 }
 
 if(loading === true) {
-  return <h1 className="text-gray-50">Loading .....</h1>
+  return
+   <div className="fixed inset-0 bg-[#0F172A]/90 flex items-center justify-center z-50">
+  <div className="text-center">
+
+    <div className="relative w-20 h-20 mx-auto">
+      <div className="absolute inset-0 rounded-full border-4 border-cyan-500/20"></div>
+
+      <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-cyan-400 border-r-cyan-400 animate-spin"></div>
+    </div>
+
+    <h2 className="text-white text-2xl font-bold mt-6">
+      Expense Tracker
+    </h2>
+  </div>
+</div>
 }
   return (
 

@@ -1,7 +1,7 @@
 import FrontPage from "./components/FrontPage/FrontPage";
 import AuthPage from "./components/Auth/AuthPage";
 import Register from "./components/Auth/Register";
-import ClientHandel from "./components/Expense/ClientHandel";
+import ClientHandel from "./components/Layout/ClientHandel";
 import CreateProfile from "./components/Profile/CreateProfile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ExpenseCreate from "./components/Client/ExpenseCreate";
@@ -11,12 +11,12 @@ import Analytics from "./components/Client/Analytics";
 import ContextData from "./components/context/ProfileContext";
 import ExpenseData from "./components/context/ExpenseContext";
 import WalletData from "./components/context/WalletContext";
-import EditProfile from "./components/Expense/EditProfile";
-import ChangePassword from "./components/Expense/ChangePassword";
-import ProtectedLayout from "../ProtectedLayout";
+import EditProfile from "./components/Layout/EditProfile";
+import ChangePassword from "./components/Layout/ChangePassword";
 import ContectService from "./components/services/ContectService";
 import AboutService from "./components/services/AboutService";
 import ConditionService from "./components/services/ConditionService";
+import ProtectedLayout from "./ProtectedLayout";
 
 
 const app = () =>{
