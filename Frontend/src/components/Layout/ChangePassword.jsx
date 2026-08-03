@@ -1,6 +1,7 @@
 import { useContext, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
+import api from "../Api/axios"
 
 const ChangePassword = () =>{
 
@@ -21,7 +22,7 @@ const changePasswordClicked = async(e) =>{
     }
 
       try {
-            const response = await axios.post('http://localhost:3000/api/auth/changePassword' , passwordData , {withCredentials:true})
+            const response = await api.post('/api/auth/changePassword' , passwordData )
            
             alert(response.data.message)
             

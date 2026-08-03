@@ -2,6 +2,7 @@ import { Children } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import api from "../Api/axios";
 
 import { createContext } from "react";
 
@@ -14,7 +15,7 @@ const WalletData = ({children}) =>{
 
      const fatchWalletData = async()=>{
             try {
-                const response = await axios.get('http://localhost:3000/api/details/getWalletData' , {withCredentials:true})
+                const response = await api.get('/api/details/getWalletData')
                 setWallet(response.data.walletData)
             } catch (error) {
              const errorMsg = error.response?.data?.message || error.message

@@ -4,16 +4,7 @@ import { WalletContext } from "../context/WalletContext"
 
 const Hader = () =>{
   
-   const {loading} = useContext(WalletContext)
    const {wallet} = useContext(WalletContext)
-
-   if (loading) {
-    return (
-        <div className="flex h-screen items-center justify-center bg-gray-950 text-cyan-400 text-xl font-bold">
-            Loading Dashboard...
-        </div>
-        )
-    }
 
     return(
         <>

@@ -10,6 +10,7 @@ import { MdDelete } from "react-icons/md";
 import { IoChevronBackCircle } from "react-icons/io5";
 import { ProfileContext } from "../context/ProfileContext";
 import { WalletContext } from "../context/WalletContext";
+import api from "../Api/axios";
 
 const View = () => {
   const { loading } = useContext(ExpenseContext);
@@ -39,8 +40,7 @@ const View = () => {
 
   const handelOnExpenseDelete = async () => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3000/api/expense/deleteExpense/${expenseId}`,
+      const response = await api.delete(`/api/expense/deleteExpense/${expenseId}`,
         { withCredentials: true },
       );
       await fatchProfile();
@@ -60,8 +60,8 @@ const View = () => {
   const handelOnIncomeDelete = async () => {
     try {
       console.log("Income delete Click!");
-      const response = await axios.delete(
-        `http://localhost:3000/api/auth/deleteIncome/${incomeId}`,
+      const response = await api.delete(
+        `/api/auth/deleteIncome/${incomeId}`,
         { withCredentials: true },
       );
       alert("Your Income Deleted!");

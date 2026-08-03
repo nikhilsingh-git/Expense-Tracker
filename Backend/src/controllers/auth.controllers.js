@@ -5,19 +5,6 @@ const Income = require("../models/incom.model");
 const Wallet = require("../models/wallet.model");
 const mongoose = require("mongoose");
 
-// const genretToken = async(req,res,cb)=>{
-
-//   const incomingToken = req.cookie?.refershTokan
-
-//    const decoded = jwt.verify(incomingToken , process.env.REFERSH_JWT_SECRET)
-
-//     const user = await userModel.findById(decoded.id)
-
-//      const regenartToken = jwt.sign({id: user._id} , process.env.REGENART_TOKEN_SECRET , {expiresIn:"10d"})
-
-//    return {accessToken , refershTokan}
-// }
-
 const register = async (req, res) => {
   try {
     const { username, email, password, ConfirmPassword } = req.body;
@@ -51,14 +38,12 @@ const register = async (req, res) => {
       expiresIn: "1d",
     });
 
-    const refershTokan = jwt.sign(
-      { id: user._id },
-      process.env.REFERSH_JWT_SECRET,
-      { expiresIn: "10d" },
-    );
-
-    res.cookie("accessToken", accessToken);
-    res.cookie("refershTokan", refershTokan);
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
 
     res.status(201).json({
       message: "regester successfully!",
@@ -101,14 +86,12 @@ const login = async (req, res) => {
       expiresIn: "1d",
     });
 
-    const refershTokan = jwt.sign(
-      { id: user._id },
-      process.env.REFERSH_JWT_SECRET,
-      { expiresIn: "10d" },
-    );
-
-    res.cookie("accessToken", accessToken);
-    res.cookie("refershTokan", refershTokan);
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
 
     return res.status(200).json({
       message: "Login successFully!",

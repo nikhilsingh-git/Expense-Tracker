@@ -16,6 +16,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { ExpenseContext } from "../context/ExpenseContext";
 import { ProfileContext } from "../context/ProfileContext";
 import { WalletContext } from "../context/WalletContext";
+import api from "../Api/axios";
 
 const ExpenseCreate = () => {
   const { expense } = useContext(ExpenseContext);
@@ -71,11 +72,7 @@ const ExpenseCreate = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/details/expense",
-        expenseData,
-        { withCredentials: true },
-      );
+      const response = await api.post("/api/details/expense", expenseData);
       setExpenseSuccess(response.data.message);
       await fatchProfile();
       await fatchMonthlyExpense();
@@ -123,10 +120,9 @@ const ExpenseCreate = () => {
     console.log(addIncomeData);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/income",
-        addIncomeData,
-        { withCredentials: true },
+      const response = await api.post(
+        "/api/auth/income",
+        addIncomeData
       );
       setsuccessMsg(response.data.message);
       addIncome.current.value = "";

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../Api/axios";
 
 export const ProfileContext = createContext();
 
@@ -19,9 +20,8 @@ const ContextData = ({ children }) => {
 
   const fatchProfile = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api/auth/getProfileData",
-        { withCredentials: true },
+      const response = await api.get(
+        "/api/auth/getProfileData"
       );
       setProfileData(response.data.profileData);
     } catch (error) {
@@ -36,9 +36,8 @@ const ContextData = ({ children }) => {
 
   const fatchMonthlyExpense = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api/details/monthlyExpense",
-        { withCredentials: true },
+      const response = await api.get(
+        "/api/details/monthlyExpense"
       );
       setMonthlyExpense(response.data.monthlyExpenseAmount);
     } catch (error) {
@@ -51,9 +50,8 @@ const ContextData = ({ children }) => {
 
   const fatchMonthlyIncome = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api/auth/monthlyIncome",
-        { withCredentials: true },
+      const response = await api.get(
+        "/api/auth/monthlyIncome"
       );
       setMonthlyIncome(response.data.monthlyIncomeAmount);
     } catch (error) {
@@ -66,10 +64,9 @@ const ContextData = ({ children }) => {
 
   const editProfile = async (formData) => {
     try {
-      const response = await axios.patch(
-        "http://localhost:3000/api/auth/editProfile",
-        formData,
-        { withCredentials: true },
+      const response = await api.patch(
+        "/api/auth/editProfile",
+        formData
       );
     } catch (error) {
       const errorMsg = error.response?.data?.message || error.message;
@@ -78,10 +75,9 @@ const ContextData = ({ children }) => {
 
   const logoutOnClick = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/logout",
-        {},
-        { withCredentials: true },
+      const response = await api.post(
+        "/api/auth/logout",
+        {}
       );
 
       navigate("/", {

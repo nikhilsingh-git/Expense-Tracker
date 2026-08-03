@@ -2,7 +2,6 @@ import Profile from "../Layout/Profile";
 import Card from "../Layout/Card";
 import OverView from "../Layout/OverView";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { ProfileContext } from "../context/ProfileContext";
 import PersonalDetails from "../Layout/PersonalDetails";
 

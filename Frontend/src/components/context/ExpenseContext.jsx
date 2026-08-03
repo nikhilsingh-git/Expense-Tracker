@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../Api/axios";
 
 export const ExpenseContext = createContext();
 
@@ -21,8 +22,8 @@ const ExpenseData = ({ children }) => {
 
   const fatchExpense = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api/details/getExpense",
+      const response = await api.get(
+        "/api/details/getExpense",
         { withCredentials: true },
       );
       setExpense(response.data.expense);
@@ -38,9 +39,8 @@ const ExpenseData = ({ children }) => {
 
   const fatchIncome = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api/auth/getAllIncome",
-        { withCredentials: true },
+      const response = await api.get(
+        "/api/auth/getAllIncome"
       );
       setIncome(response.data.allIncome);
     } catch (error) {
@@ -75,10 +75,9 @@ const ExpenseData = ({ children }) => {
 
   const editExpenseData = async (ExpenseData) => {
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/api/expense/edit/${expenseId}`,
-        ExpenseData,
-        { withCredentials: true },
+      const response = await api.patch(
+        `/api/expense/edit/${expenseId}`,
+        ExpenseData
       );
       console.log(response.data);
     } catch (error) {
@@ -88,10 +87,9 @@ const ExpenseData = ({ children }) => {
 
   const editIncomeData = async (incomeData) => {
     try {
-      const response = await axios.patch(
-        `http://localhost:3000/api/auth/editIncome/${incomeId}`,
-        incomeData,
-        { withCredentials: true },
+      const response = await api.patch(
+        `/api/auth/editIncome/${incomeId}`,
+        incomeData
       );
     } catch (error) {
       const errMsg = error.response?.data?.error || error.message;

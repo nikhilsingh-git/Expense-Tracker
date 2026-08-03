@@ -6,18 +6,18 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import api from "./components/Api/axios";
 
 
 
 const ProtectedLayout = () =>{
-
 
   const [login , setLogin] = useState(null)
   const [loading , setLoading] = useState(true)
 
   const isUserLogin = async()=>{
       try {
-        const response = await axios.get('http://localhost:3000/api/auth/isUserLogin' , {withCredentials:true})
+        const response = await api.get('/api/auth/isUserLogin')
         setLogin(response?.data?.success)
       } catch (error) {
         setLogin(false)

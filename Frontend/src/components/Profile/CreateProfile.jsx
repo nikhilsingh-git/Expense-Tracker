@@ -7,6 +7,7 @@ import { useState } from "react";
 import { WalletContext } from "../context/WalletContext";
 import { ExpenseContext } from "../context/ExpenseContext";
 import { FaArrowRight } from "react-icons/fa";
+import api from "../Api/axios";
 
 const CreateProfile = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -63,10 +64,9 @@ const CreateProfile = () => {
     const formData = new FormData(e.target);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/profile",
-        formData,
-        { withCredentials: true },
+      const response = await api.post(
+        "/api/auth/profile",
+        formData
       );
       await fatchProfile();
       await fatchMonthlyExpense();
@@ -110,10 +110,9 @@ const CreateProfile = () => {
       bio: "",
     };
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/profile",
-        data,
-        { withCredentials: true },
+      const response = await api.post(
+        "/api/auth/profile",
+        data
       );
       await fatchProfile();
       await fatchMonthlyExpense();

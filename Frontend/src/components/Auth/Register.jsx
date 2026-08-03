@@ -7,6 +7,7 @@ import { GiConfirmed } from "react-icons/gi";
 import { useEffect, useRef } from "react";
 import axios from "axios";
 import { useState } from "react";
+import api from "../Api/axios";
 
 const Regester = () => {
   const username = useRef();
@@ -28,8 +29,7 @@ const Regester = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/register",
+      const response = await api.post("/api/auth/register",
         registerData,
       );
       alert(response?.data?.message);

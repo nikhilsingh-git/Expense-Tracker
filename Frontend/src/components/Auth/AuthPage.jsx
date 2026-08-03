@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { ProfileContext } from "../context/ProfileContext";
 import { ExpenseContext } from "../context/ExpenseContext";
 import { WalletContext } from "../context/WalletContext";
+import api from "../Api/axios";
 
 const AuthPage = () => {
   const userOrEmail = useRef();
@@ -27,10 +28,8 @@ const AuthPage = () => {
       password: password.current.value,
     };
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
+      const response = await api.post("/api/auth/login",
         loginData,
-        { withCredentials: true },
       );
       if (response.data.user.isProfileCreated) {
         navigate("/api/auth/client-handel", {
