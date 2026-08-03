@@ -80,7 +80,7 @@ const updateProfile = async(e)=>{
 
 }
 
-const backClicked = () =>{
+const backClicked = (e) =>{
     e.preventDefault()
     navigate('/api/auth/client-handel')
 }
@@ -213,7 +213,7 @@ const backClicked = () =>{
                        <button type="submit" className="md:w-50 w-30 h-9 mt-5  bg-emerald-500 cursor-pointer text-slate-950 rounded-lg md:ms-10 ms-15
                        hover:text-white">Update Profile</button>
                        <button className=" md:w-50 w-30 h-9 border border-[#132639] bg-transparent cursor-pointer text-slate-950  rounded-lg md:ms-30 ms-5"
-                       onClick={backClicked}>Back</button>
+                       onClick={(e)=>backClicked(e)}>Back</button>
                     </div>
                    
                 </form>
