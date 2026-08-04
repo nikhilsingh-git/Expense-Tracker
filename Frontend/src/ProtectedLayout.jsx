@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import ContextData from "./components/context/ProfileContext";
 import WalletData from "./components/context/WalletContext";
 import ExpenseData from "./components/context/ExpenseContext";
-import axios from "axios";
+
 import { useEffect } from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";

@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ExpenseContext } from "../context/ExpenseContext";
@@ -40,9 +40,7 @@ const View = () => {
 
   const handelOnExpenseDelete = async () => {
     try {
-      const response = await api.delete(`/api/expense/deleteExpense/${expenseId}`,
-        { withCredentials: true },
-      );
+      const response = await api.delete(`/api/expense/deleteExpense/${expenseId}`);
       await fatchProfile();
       await fatchMonthlyExpense();
       await fatchMonthlyIncome();
@@ -61,8 +59,7 @@ const View = () => {
     try {
       console.log("Income delete Click!");
       const response = await api.delete(
-        `/api/auth/deleteIncome/${incomeId}`,
-        { withCredentials: true },
+        `/api/auth/deleteIncome/${incomeId}`
       );
       alert("Your Income Deleted!");
       await fatchProfile();

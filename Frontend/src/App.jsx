@@ -18,7 +18,6 @@ import AboutService from "./components/services/AboutService";
 import ConditionService from "./components/services/ConditionService";
 import ProtectedLayout from "./ProtectedLayout";
 
-
 const app = () =>{
 
 return(
@@ -46,6 +45,7 @@ return(
         </Route>
       </Routes>
     </BrowserRouter>
+
 
   </>
 )

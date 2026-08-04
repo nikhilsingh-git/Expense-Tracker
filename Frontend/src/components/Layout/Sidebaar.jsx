@@ -17,7 +17,7 @@ const Sidebaar = () =>{
       setShowSide((prev)=> !prev)
     }
     const clicked = () =>{
-      setShowSide((prev)=> !prev)
+      setShowSide(false)
     }
     return(
         <>

@@ -139,220 +139,195 @@ const CreateProfile = () => {
     }
   };
 
-  return (
-    <>
-      <div className="min-h-screen bg-slate-300 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="m-auto  bg-slate-200 w-1/2 h-auto shadow-lg rounded-4xl">
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold capitalize pt-5 font-sans text-slate-800">
-              Setup your Profile
-            </h1>
-            <p className="text-sm pt-1 font-sans text-slate-500">
-              Let's personalize your Expense Tracker account
-            </p>
-          </div>
-          <form
-            action=""
-            className="font-sans text-sm py-10"
-            onSubmit={(e) => haldelFormSubmit(e)}
-            onChange={onChange}
-          >
-            <p className="text-red-600 font-sans text-md mt-5 ms-15">
-              {errorMsg}
-            </p>
-
-            <div className="flex flex-col items-center justify-center">
-              <div
-                className="border-2 border-dashed border-slate-500 bg-slate-300 hover:border-indigo-500 cursor-pointer rounded-full w-30 h-30 text-center
-                        flex items-center justify-center overflow-hidden"
-                onClick={(e) => {
-                  inputFile.current.click(e);
-                }}
-              >
-                {image ? (
-                  <img
-                    src={image}
-                    alt="preview image"
-                    className="w-full h-full object-cover border-0"
-                  />
-                ) : (
-                  <h1 className="text-xs font-sm text-gray-500">
-                    uploade image
-                  </h1>
-                )}
-              </div>
-              <input
-                type="file"
-                name="inputFile"
-                id=""
-                className="hidden"
-                ref={inputFile}
-                accept="image/*"
-                onChange={(e) => haldelFileChange(e)}
-              />
-              <button
-                className="py-2 text-md cursor-pointer font-sans font-stretch-semi-condensed border-0 text-slate-900 hover:text-indigo-600"
-                onClick={(e) => {
-                  inputFile.current.click(e);
-                }}
-              >
-                choose file
-              </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-3 px-15">
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  placeholder="Enter Full Name"
-                  ref={fullName}
-                  name="fullName"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Email Address
-                </label>
-                <input
-                  type="text"
-                  className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  placeholder="you@example.com"
-                  ref={email}
-                  name="email"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Gender
-                </label>
-                <select
-                  type="text"
-                  className="outline-0 mt-1 border w-full h-9 rounded-lg  border-slate-800 cursor-pointer
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  ref={gender}
-                  name="gender"
-                >
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Date of Birth
-                </label>
-                <input
-                  type="date"
-                  className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 cursor-pointer
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  placeholder="Enter Your Age"
-                  ref={dob}
-                  name="dob"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Occupation
-                </label>
-                <input
-                  type="text"
-                  className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  placeholder="Software Engineer,Student etc."
-                  ref={occupation}
-                  name="occupation"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Preferred Currency
-                </label>
-                <select
-                  className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 cursor-pointer
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  ref={currency}
-                  name="currency"
-                >
-                  <option value="INR">INR (₹)</option>
-                  <option value="USD">USD ($)</option>
-                  <option value="EUR">EUR (€)</option>
-                  <option value="GBP">GBP (£)</option>
-                </select>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-4 px-15 mt-3">
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Monthly Budget Target
-                </label>
-                <input
-                  type="text"
-                  className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  placeholder="e.g. 50000"
-                  ref={monthlyBudget}
-                  name="monthlyBudget"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Address
-                </label>
-                <input
-                  type="text"
-                  className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  placeholder="e.g. Apartment, Street, City, State"
-                  ref={address}
-                  name="address"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700">
-                  Bio
-                </label>
-                <textarea
-                  type="text"
-                  className="outline-0 mt-1 border w-full rounded-lg bg-transparent border-slate-800 scrollbar-hide
-                            focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
-                  placeholder="tell us a bit about yourself or your finanial goals..."
-                  rows="6"
-                  ref={bio}
-                  name="bio"
-                ></textarea>
-              </div>
-            </div>
-            <div className="px-15">
-              <button
-                type="submit"
-                className="w-full h-9 mt-5 border bg-indigo-500 cursor-pointer text-slate-200 rounded-lg"
-              >
-                Create Profile
-              </button>
-            </div>
-            <div className="flex text-md relative hover:font-medium mt-3 hover:text-blue-400 ms-160">
-              <button
-                type="button"
-                className=" mt-3 font-sans cursor-pointer "
-                onClick={haldelOnSkip}
-              >
-                Skip
-              </button>
-              <h1 className="absolute top-4 left-8 cursor-pointer">
-                <FaArrowRight />
-              </h1>
-            </div>
-          </form>
+ return (
+  <>
+    <div className="min-h-screen bg-slate-300 flex items-center justify-center py-6 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-2xl md:w-1/2 bg-slate-200 py-8 px-4 sm:px-6 md:px-0 h-auto shadow-lg rounded-4xl">
+        <div className="text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold capitalize pt-5 font-sans text-slate-800">
+            Setup your Profile
+          </h1>
+          <p className="text-sm pt-1 font-sans text-slate-500">
+            Let's personalize your Expense Tracker account
+          </p>
         </div>
+
+        <form
+          action=""
+          className="font-sans text-sm py-6 md:py-10"
+          onSubmit={(e) => haldelFormSubmit(e)}
+          onChange={onChange}
+        >
+          <p className="text-red-600 font-sans text-md mt-5 text-center px-4">
+            {errorMsg}
+          </p>
+
+          <div className="flex flex-col items-center justify-center">
+            <div
+              className="border-2 border-dashed border-slate-500 bg-slate-300 hover:border-indigo-500 cursor-pointer rounded-full w-24 h-24 md:w-30 md:h-30 text-center
+                      flex items-center justify-center overflow-hidden"
+              onClick={(e) => inputFile.current.click(e)}
+            >
+              {image ? (
+                <img
+                  src={image}
+                  alt="preview image"
+                  className="w-full h-full object-cover border-0"
+                />
+              ) : (
+                <h1 className="text-xs font-sm text-gray-500">upload image</h1>
+              )}
+            </div>
+            <input
+              type="file"
+              name="inputFile"
+              className="hidden"
+              ref={inputFile}
+              accept="image/*"
+              onChange={(e) => haldelFileChange(e)}
+            />
+            <button
+              className="py-2 text-md cursor-pointer font-sans font-stretch-semi-condensed border-0 text-slate-900 hover:text-indigo-600"
+              onClick={(e) => inputFile.current.click(e)}
+            >
+              choose file
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-3 px-4 md:px-15">
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Full Name</label>
+              <input
+                type="text"
+                className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                placeholder="Enter Full Name"
+                ref={fullName}
+                name="fullName"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Email Address</label>
+              <input
+                type="text"
+                className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                placeholder="you@example.com"
+                ref={email}
+                name="email"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Gender</label>
+              <select
+                className="outline-0 mt-1 border w-full h-9 rounded-lg border-slate-800 cursor-pointer
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                ref={gender}
+                name="gender"
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Date of Birth</label>
+              <input
+                type="date"
+                className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 cursor-pointer
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                ref={dob}
+                name="dob"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Occupation</label>
+              <input
+                type="text"
+                className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                placeholder="Software Engineer, Student etc."
+                ref={occupation}
+                name="occupation"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Preferred Currency</label>
+              <select
+                className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800 cursor-pointer
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                ref={currency}
+                name="currency"
+              >
+                <option value="INR">INR (₹)</option>
+                <option value="USD">USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 px-4 md:px-15 mt-3">
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Monthly Budget Target</label>
+              <input
+                type="text"
+                className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                placeholder="e.g. 50000"
+                ref={monthlyBudget}
+                name="monthlyBudget"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Address</label>
+              <input
+                type="text"
+                className="outline-0 mt-1 border w-full h-9 rounded-lg bg-transparent border-slate-800
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                placeholder="e.g. Apartment, Street, City, State"
+                ref={address}
+                name="address"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700">Bio</label>
+              <textarea
+                className="outline-0 mt-1 border w-full rounded-lg bg-transparent border-slate-800 scrollbar-hide
+                          focus:ring-1 focus:outline-1 focus:outline-blue-600 focus:ring-blue-600 pl-3 placeholder:text-sm placeholder:text-gray-400"
+                placeholder="tell us a bit about yourself or your financial goals..."
+                rows="6"
+                ref={bio}
+                name="bio"
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="px-4 md:px-15">
+            <button
+              type="submit"
+              className="w-full h-9 mt-5 border bg-indigo-500 cursor-pointer text-slate-200 rounded-lg"
+            >
+              Create Profile
+            </button>
+          </div>
+
+          <div className="flex items-center justify-end gap-2 text-md hover:font-medium mt-3 hover:text-blue-400 px-4 md:px-15">
+            <button
+              type="button"
+              className="font-sans cursor-pointer"
+              onClick={haldelOnSkip}
+            >
+              Skip
+            </button>
+            <FaArrowRight />
+          </div>
+        </form>
       </div>
-    </>
-  );
+    </div>
+  </>
+);
 };
 
 export default CreateProfile;

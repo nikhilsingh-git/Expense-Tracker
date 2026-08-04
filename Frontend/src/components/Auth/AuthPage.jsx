@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
-import axios from "axios";
+
 import { useContext } from "react";
 import { ProfileContext } from "../context/ProfileContext";
 import { ExpenseContext } from "../context/ExpenseContext";

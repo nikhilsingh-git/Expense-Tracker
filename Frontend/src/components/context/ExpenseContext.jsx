@@ -23,8 +23,7 @@ const ExpenseData = ({ children }) => {
   const fatchExpense = async () => {
     try {
       const response = await api.get(
-        "/api/details/getExpense",
-        { withCredentials: true },
+        "/api/details/getExpense"
       );
       setExpense(response.data.expense);
     } catch (error) {
@@ -79,7 +78,6 @@ const ExpenseData = ({ children }) => {
         `/api/expense/edit/${expenseId}`,
         ExpenseData
       );
-      console.log(response.data);
     } catch (error) {
       const errMsg = error.response?.data?.error || error.message;
     }

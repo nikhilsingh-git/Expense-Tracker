@@ -5,4 +5,12 @@ const api = axios.create({
     withCredentials: true,
 })
 
+api.interceptors.request.use((config) => {
+  console.log("Request URL:", config.url);
+  console.log("withCredentials:", config.withCredentials);
+  return config;
+});
+
 export default api
+
+

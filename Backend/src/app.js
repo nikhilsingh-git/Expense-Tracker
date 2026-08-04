@@ -17,11 +17,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true ,limit:"16kb"}))
 app.use(express.static("public"))
 
+app.use(cookieParser());
 app.use(cors({
   origin:"https://expense-tracker-eight-rho-36.vercel.app",
   credentials:true
 }))
-app.use(cookieParser());
 
 
 app.use('/api/auth' ,route)

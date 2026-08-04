@@ -5,7 +5,6 @@ import { FaHome } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { GiConfirmed } from "react-icons/gi";
 import { useEffect, useRef } from "react";
-import axios from "axios";
 import { useState } from "react";
 import api from "../Api/axios";
 
@@ -34,8 +33,7 @@ const Regester = () => {
       );
       alert(response?.data?.message);
       navigate("/api/auth/login");
-      await fetchExpense();
-
+      
       username.current.value = "";
       email.current.value = "";
       password.current.value = "";

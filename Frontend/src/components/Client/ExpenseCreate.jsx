@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { FaArrowAltCircleUp } from "react-icons/fa";
 import { useRef } from "react";
-import axios from "axios";
 
 import { PiShoppingCartFill } from "react-icons/pi";
 import { MdEmojiTransportation } from "react-icons/md";
@@ -61,7 +60,7 @@ const ExpenseCreate = () => {
     setIncomeErrMsg("");
   };
 
-  const haldelOnExpense = async (e) => {
+  const haldelOnExpense = async(e) => {
     e.preventDefault();
     const expenseData = {
       amount: amount.current.value,
@@ -107,7 +106,7 @@ const ExpenseCreate = () => {
     description.current.value = "";
   };
 
-  const haldelOnIncome = async (e) => {
+  const haldelOnIncome = async(e) => {
     e.preventDefault();
     const addIncomeData = {
       addIncome: addIncome.current.value,
@@ -117,7 +116,6 @@ const ExpenseCreate = () => {
       description: description.current.value,
     };
 
-    console.log(addIncomeData);
 
     try {
       const response = await api.post(
