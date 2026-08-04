@@ -75,6 +75,25 @@ const ConditionClicked = () =>{
             >
          Sign Up
          </Link>
+         <Link
+             to="/about"
+            className="px-5 py-2 rounded-lg  text-cyan-400 font-semibold text-sm shadow-lg shadow-cyan-400/20 transition-all duration-300 hover:bg-cyan-300 hover:scale-105"
+            >
+         About
+         </Link>
+         <Link
+             to="/contect"
+            className="px-5 py-2 rounded-lg  text-cyan-400 font-semibold text-sm shadow-lg shadow-cyan-400/20 transition-all duration-300 hover:bg-cyan-300 hover:scale-105"
+            >
+         Contect
+         </Link>
+         <Link
+             to="/tram-condition"
+            className="px-5 py-2 rounded-lg  text-cyan-400 font-semibold text-sm shadow-lg shadow-cyan-400/20 transition-all duration-300 hover:bg-cyan-300 hover:scale-105"
+            >
+         Trams & conditions
+         </Link>
+
         </div>
        </div>    
     }
