@@ -34,21 +34,9 @@ const register = async (req, res) => {
       password: hash,
     });
 
-    const accessToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
-
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-
     res.status(201).json({
       message: "regester successfully!",
-      user,
-      accessToken: accessToken,
+      user
     });
   } catch (error) {
     res.status(401).json({

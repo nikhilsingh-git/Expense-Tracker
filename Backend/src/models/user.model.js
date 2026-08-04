@@ -14,23 +14,18 @@ const userSchema = new mongoose.Schema({
         required:true,
         unique:true,
         lowercase:true,
-        trim:true,
-        // match: [emailRegex, "Please enter a valid email address"]
+        trim:true,     
 
     },
     password:{
         type:String,
         required:true,
         minLength:[6,"Password must be at least 6 characters long" ],
-        // select:false
+        
     },
     isProfileCreated:{
         type:Boolean,
         default:false
-    },
-    refershTokan:{
-        type:String,
-        default:''
     }
 },{ timestamps: true })
 
