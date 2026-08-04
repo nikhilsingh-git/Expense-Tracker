@@ -10,7 +10,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const app = express()
-
+app.enable('trust proxy')
 connectDB()
 
 app.use(express.json());
