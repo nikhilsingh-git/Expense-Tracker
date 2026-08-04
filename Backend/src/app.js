@@ -18,12 +18,9 @@ app.use(express.urlencoded({extended:true ,limit:"16kb"}))
 app.use(express.static("public"))
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://expense-tracker-eight-rho-36.vercel.app"
-  ],
-  credentials: true
-}));
+  origin:"https://expense-tracker-eight-rho-36.vercel.app",
+  credentials:true
+}))
 app.use(cookieParser());
 
 
