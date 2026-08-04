@@ -32,8 +32,8 @@ return(
         <Route path="/contect" element={<ContectService />}/>
         <Route path="/about" element={<AboutService />}/>
         <Route path="/tram-condition" element={<ConditionService />}/>
+        <Route path='/api/auth/create-profile' element={<CreateProfile />} />
         <Route element={<ProtectedLayout />}>
-          <Route path='/api/auth/create-profile' element={<CreateProfile />} />
           <Route path='/api/auth/view' element={<View />}/>
             <Route path='/api/auth/client-handel' element={<ClientHandel />}>  
               <Route index element={<DashboardPage />} />
